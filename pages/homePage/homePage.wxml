@@ -1,0 +1,19 @@
+<view class="container">
+  <logoPage></logoPage>
+  <view class="loginPage">
+    <view>
+      <button>
+        医生登录
+      </button>
+    
+      <button>
+        患者登录
+      </button>
+    </view>
+  
+  
+  </view>
+  
+
+
+</view>

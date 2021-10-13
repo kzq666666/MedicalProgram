@@ -1,0 +1,6 @@
+<!--components/logoPage/logoPage.wxml-->
+<view class="logoPage">
+  <view class="container">
+      <text>{{title}}</text>
+  </view>
+</view>
