@@ -3,7 +3,7 @@
   width: 100%;
   height: 420rpx;
   background-image: url(http://tva1.sinaimg.cn/large/005Kp0Zxly1gvdiqpao7kj61hc0p0tcu02.jpg);
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 }

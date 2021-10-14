@@ -1,19 +1,34 @@
 <view class="container">
   <logoPage></logoPage>
-  <view class="loginPage">
+  <view class="loginPage" wx:if="{{!isLogin}}">
     <view>
-      <button>
-        医生登录
+      <button class='firstBtn' type='primary' lang="zh_CN" bindtap="bindGetUserInfo">
+        授权登录
       </button>
-    
       <button>
         患者登录
       </button>
     </view>
-  
-  
   </view>
-  
+  <view class="personPage" wx:else>
+    <view class="personalInfo">
+      <image class="userinfo-avatar" src="{{userInfo.avatarUrl ? userinfo.avatarUrl: 'https://i2.hdslb.com/bfs/face/bf1d179e0612413c834d8212d0953a8454c3caa7.jpg@128w_128h_1o.webp'}}" mode="cover"></image>
+      <view class="rightCon">
+        <text class="nickName">{{userInfo.nickName ? userInfo.nickName:123}}</text>
+        <text class="type">{{isDoctor?'医生':'患者'}}</text>
+      </view>
 
-
+    </view>
+    <view class="moduleContainer" wx:if="{{isDoctor}}">
+      <view wx:for="{{doctorPage}}" class="moduleItem">
+      </view>
+    </view>
+    <view class="moduleContainer" wx:else>
+      <view wx:for="{{patientPage}}" class="moduleItem">
+        <text>{{item.name}}</text>
+      
+      </view>
+    
+  </view>
+  </view>
 </view>

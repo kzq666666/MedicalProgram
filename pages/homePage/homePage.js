@@ -1,19 +1,67 @@
 const app = getApp()
 
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-    userInfo: {}
+    userInfo: {},
+    isLogin: true,
+    isFirstLogin: true,
+    testUrl: '',
+    doctorPage: [
+      {
+        "name": '通知信息',
+        "targetUrl": "/page/",
+      },
+      {
+        "name": '患者管理',
+        "targetUrl": "/page/"
+      },
+      {
+        "name": '照片问卷',
+        "targetUrl": "/page/"
+      },
+      {
+        "name": '反馈统计',
+        "targetUrl": "/page/"
+      }
+    ],
+    patientPage:[
+      {
+        "name": "个人资料",
+        "targetUrl": "/pages/"
+      },
+      {
+        "name": "我的消息",
+        "targetUrl": "/pages/"
+      },
+      {
+        "name": "我的照片",
+        "targetUrl": "/pages/"
+      },
+      {
+        "name": "我的问卷",
+        "targetUrl": "/pages/"
+      }
+    ]
   },
-
+  bindGetUserInfo(res){
+    console.log(res)
+    wx.getUserProfile({
+      desc: '展示用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+      success: (res) => {
+        this.setData(
+          {
+            userInfo: res.userInfo,
+            isLogin: !this.data.isLogin,
+            isFirstLogin: false,
+          }
+        )
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
   },
 
   /**

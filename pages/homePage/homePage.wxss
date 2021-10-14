@@ -3,5 +3,61 @@
   justify-content:center;
   align-items: center;
   width:100%;
-  height: calc(100vh - 450rpx);
+  height: 400rpx;
+}
+
+.firstBtn{
+  margin-bottom: 20px;
+}
+
+.personPage{
+  padding: 30rpx;
+  height: 500rpx;
+}
+
+.personalInfo{
+  width: 100%;
+  height: 228rpx;
+  background-color: #fff;
+  box-shadow: 5px 5px 5px gainsboro; 
+  display: flex;
+}
+
+.userinfo-avatar{
+  overflow: hidden;
+  flex-basis: 128rpx;
+  height: 128rpx;
+  margin: 50rpx;
+  border-radius: 50%;
+}
+
+.rightCon{
+  flex:1;
+  display: flex;
+  flex-direction: column;
+  padding-top: 53rpx;
+  padding-right: 40rpx;
+}
+.nickName{
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.type{
+  margin-top: 10rpx;
+  color: #FF716D;
+  border-bottom: 1px solid #ddd;
+  padding-right: 5rpx;
+}
+
+.moduleContainer{
+  margin-top: 30rpx;
+  display: flex;
+  flex-wrap: wrap;
+}
+.moduleItem{
+  flex: 1 0 40%;
+  height: 200rpx;
+  margin: 10rpx;
+  background-color: #fff;
 }
