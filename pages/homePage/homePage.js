@@ -45,35 +45,70 @@ Page({
   },
   bindGetUserInfo(e){
     const type = e.currentTarget.dataset.type;
-    wx.login({
-      success(res){
-        if(res.code){
-          wx.request({
-            url: app.globalData.url + '/wx/login',
-            method: 'post',
-            data: {
-              code: res.code
-            },
-            success(res){
-              console.log(res)
+    let params = {};
+    wx.getUserProfile({
+      desc: '展示用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+      success: (res) => {
+        params["encryptedData"] = res.encryptedData;
+        params["iv"] = res.iv;
+        params["rawData"] = res.rawData;
+        params["signature"] = res.signature;
+        
+        wx.login({
+          success(res){
+            if(res.code){
+              params["code"] = res.code;
+              console.log(params)
+              wx.request({
+                url: app.globalData.url + '/wx/login',
+                method: 'post',
+                data: params,
+                success(res){
+                  console.log(res)
+                }
+              })
             }
-          })
-        }
+          }
+        })
       }
     })
-    // wx.getUserProfile({
-    //   desc: '展示用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
-    //   success: (res) => {
-    //     this.setData(
-    //       {
-    //         userInfo: res.userInfo,
-    //         isLogin: !this.data.isLogin,
-    //         isFirstLogin: false,
-    //       }
-    //     )
-    //     console.log(res.userInfo.avatarUrl)
+    // wx.login({
+    //   success(res){
+    //     if(res.code){
+    //       wx.request({
+    //         url: app.globalData.url + '/wx/login',
+    //         method: 'post',
+    //         data: {
+    //           code: res.code
+    //         },
+    //         success(res){
+    //           console.log(res)
+    //         }
+    //       })
+    //     }
     //   }
     // })
+    // wx.getUserInfo({
+    //   success: function(res) {
+    //     console.log(res)
+    //   }
+    // })
+    wx.getUserProfile({
+      desc: '展示用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+      success: (res) => {
+        // this.setData(
+        //   {
+        //     userInfo: res.userInfo,
+        //     isLogin: !this.data.isLogin,
+        //     isFirstLogin: false,
+        //   }
+        // )
+        console.log(res)
+      }
+    })
+  },
+  getCode(){
+    return 
   },
   handleNav(e){
     const targetUrl = e.currentTarget.dataset.target
