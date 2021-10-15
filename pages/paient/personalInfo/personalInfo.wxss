@@ -1,0 +1,27 @@
+/* pages/paient/personalInfo/personalInfo.wxss */
+
+.personalInfo{
+  padding: 30rpx;
+}
+.personalInfoItem{
+  width: 100%;
+  display: flex;
+  margin-bottom: 50rpx;
+}
+.tag{
+  flex: 1 0 40%;
+  text-align: right;
+  margin-right: 50rpx;
+}
+.info{
+  flex: 1 0 60%;
+  text-align: left;
+}
+.infoBt{
+  width: 160rpx !important;
+  margin: 0 !important;
+  height: 85rpx;
+}
+.leftInfo{
+  text-align: left;
+}

@@ -2,17 +2,17 @@
   <logoPage></logoPage>
   <view class="loginPage" wx:if="{{!isLogin}}">
     <view>
-      <button class='firstBtn' type='primary' lang="zh_CN" bindtap="bindGetUserInfo">
+      <button class='firstBtn' type='primary' lang="zh_CN" bindtap="bindGetUserInfo" data-type="doctor">
         授权登录
       </button>
-      <button>
+      <button bindtap="bindGetUserInfo" data-type="paient">
         患者登录
       </button>
     </view>
   </view>
   <view class="personPage" wx:else>
     <view class="personalInfo">
-      <image class="userinfo-avatar" src="{{userInfo.avatarUrl ? userinfo.avatarUrl: 'https://i2.hdslb.com/bfs/face/bf1d179e0612413c834d8212d0953a8454c3caa7.jpg@128w_128h_1o.webp'}}" mode="cover"></image>
+      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
       <view class="rightCon">
         <text class="nickName">{{userInfo.nickName ? userInfo.nickName:123}}</text>
         <text class="type">{{isDoctor?'医生':'患者'}}</text>
@@ -20,11 +20,11 @@
 
     </view>
     <view class="moduleContainer" wx:if="{{isDoctor}}">
-      <view wx:for="{{doctorPage}}" class="moduleItem">
+      <view wx:for="{{doctorPage}}" wx:for-index="index" wx:key="index" class="moduleItem" bindtap="handleNav" data-target="{{item.targetUrl}}">
       </view>
     </view>
     <view class="moduleContainer" wx:else>
-      <view wx:for="{{patientPage}}" class="moduleItem">
+      <view wx:for="{{patientPage}}" wx:for-index="index" wx:key="index" class="moduleItem" bindtap="handleNav" data-target="{{item.targetUrl}}">
         <text>{{item.name}}</text>
       
       </view>

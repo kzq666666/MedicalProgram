@@ -1,0 +1,9 @@
+<!--pages/logo/logo.wxml-->
+
+<view class="logoPage">
+  <view class="title">
+    <text>
+      {{title}}
+    </text>
+  </view>
+</view>

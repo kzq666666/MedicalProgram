@@ -60,4 +60,7 @@
   height: 200rpx;
   margin: 10rpx;
   background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

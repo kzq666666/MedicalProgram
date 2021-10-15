@@ -23,7 +23,7 @@
   background-color: red; */
 } 
 
-.container text{
+.container .logoText{
   font-size: 40rpx;
   color: #fff;
   font-weight:bolder;

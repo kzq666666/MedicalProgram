@@ -3,7 +3,7 @@ const app = getApp()
 Page({
   data: {
     userInfo: {},
-    isLogin: true,
+    isLogin: false,
     isFirstLogin: true,
     testUrl: '',
     doctorPage: [
@@ -27,7 +27,7 @@ Page({
     patientPage:[
       {
         "name": "个人资料",
-        "targetUrl": "/pages/"
+        "targetUrl": "/pages/paient/personalInfo/personalInfo"
       },
       {
         "name": "我的消息",
@@ -43,20 +43,45 @@ Page({
       }
     ]
   },
-  bindGetUserInfo(res){
-    console.log(res)
-    wx.getUserProfile({
-      desc: '展示用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
-      success: (res) => {
-        this.setData(
-          {
-            userInfo: res.userInfo,
-            isLogin: !this.data.isLogin,
-            isFirstLogin: false,
-          }
-        )
+  bindGetUserInfo(e){
+    const type = e.currentTarget.dataset.type;
+    wx.login({
+      success(res){
+        if(res.code){
+          wx.request({
+            url: app.globalData.url + '/wx/login',
+            method: 'post',
+            data: {
+              code: res.code
+            },
+            success(res){
+              console.log(res)
+            }
+          })
+        }
       }
     })
+    // wx.getUserProfile({
+    //   desc: '展示用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+    //   success: (res) => {
+    //     this.setData(
+    //       {
+    //         userInfo: res.userInfo,
+    //         isLogin: !this.data.isLogin,
+    //         isFirstLogin: false,
+    //       }
+    //     )
+    //     console.log(res.userInfo.avatarUrl)
+    //   }
+    // })
+  },
+  handleNav(e){
+    const targetUrl = e.currentTarget.dataset.target
+    wx.navigateTo(
+      {
+        url: targetUrl
+      }
+    )
   },
   /**
    * 生命周期函数--监听页面加载
