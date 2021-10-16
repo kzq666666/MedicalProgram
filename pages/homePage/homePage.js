@@ -87,6 +87,27 @@ Page({
     //     console.log(res.userInfo.avatarUrl)
     //   }
     // })
+    // wx.getUserInfo({
+    //   success: function(res) {
+    //     console.log(res)
+    //   }
+    // })
+    wx.getUserProfile({
+      desc: '展示用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+      success: (res) => {
+        // this.setData(
+        //   {
+        //     userInfo: res.userInfo,
+        //     isLogin: !this.data.isLogin,
+        //     isFirstLogin: false,
+        //   }
+        // )
+        console.log(res)
+      }
+    })
+  },
+  getCode(){
+    return 
   },
   checkIsLogin(role, currentRoleType){
     const tipRole = currentRoleType == 'ROLE_PATIENT' ? '患者' : '医生';
