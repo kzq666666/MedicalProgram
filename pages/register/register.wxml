@@ -1,0 +1,29 @@
+<!--pages/register/register.wxml-->
+<view class="register">
+  <form>
+    <view class="formItem">
+      <text class="label">头像</text>
+      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+    </view>
+    <view class="formItem">
+      <text class="label">姓名</text>
+      <input type="text" class="input" value="{{userInfo.nickName}}" bindinput="valueChange" data-label="nickName"></input>
+    </view>
+    <view class="formItem">
+      <text class="label">性别</text>
+      <picker bindchange="bindPickerChange" value="{{userInfo.gender}}" range="{{genderArray}}">
+        <view class="picker">
+          {{genderArray[userInfo.gender]}}
+        </view>
+      </picker>
+    </view>
+    <view class="formItem">
+      <text class="label">类型</text>
+      <input type="text" class="input" value="{{type}}" disabled></input>
+    </view>
+
+    <button type="primary" bindtap="submitRegister">注册</button>
+  </form>
+
+
+</view>

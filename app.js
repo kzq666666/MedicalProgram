@@ -15,7 +15,7 @@ App({
   },
   globalData: {
     testName: 'kzq',
-    userInfo: 123,
+    userInfo: null,
     url: "http://120.24.254.248/api"
   }
 })

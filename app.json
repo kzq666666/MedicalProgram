@@ -3,7 +3,8 @@
     "pages/homePage/homePage",
     "pages/logs/logs",
     "pages/doctor/index/index",
-    "pages/paient/personalInfo/personalInfo"
+    "pages/paient/personalInfo/personalInfo",
+    "pages/register/register"
   ],
   "window": {
     "backgroundTextStyle": "light",

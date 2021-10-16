@@ -45,22 +45,35 @@ Page({
   },
   bindGetUserInfo(e){
     const type = e.currentTarget.dataset.type;
-    wx.login({
-      success(res){
-        if(res.code){
-          wx.request({
-            url: app.globalData.url + '/wx/login',
-            method: 'post',
-            data: {
-              code: res.code
-            },
-            success(res){
-              console.log(res)
+    const params = {};
+    const that = this;
+    wx.getUserProfile({
+      desc: 'desc',
+      success: (res)=>{
+        params["encryptedData"] = res.encryptedData;
+        params["iv"] = res.iv
+        params["rawData"] = res.rawData
+        params["signature"] = res.signature
+        app.globalData.userInfo = res.userInfo
+        wx.login({
+          success(res){
+            if(res.code){
+              params["code"] = res.code
+              wx.request({
+                url: app.globalData.url + '/wx/login',
+                method: 'post',
+                data: params,
+                success(res){
+                  that.checkIsLogin(res.role, type)
+                  console.log(res)
+                }
+              })
             }
-          })
-        }
+          }
+        })
       }
     })
+    
     // wx.getUserProfile({
     //   desc: '展示用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
     //   success: (res) => {
@@ -74,6 +87,22 @@ Page({
     //     console.log(res.userInfo.avatarUrl)
     //   }
     // })
+  },
+  checkIsLogin(role, currentRoleType){
+    const tipRole = currentRoleType == 'ROLE_PATIENT' ? '患者' : '医生';
+    if(!role){
+      wx.showModal({
+        title: '提示',
+        content: `您还未注册为${tipRole}，请点击注册按钮进行注册`,
+        confirmText: '注册',
+        success: (res)=>{
+          wx.navigateTo({
+            url: `/pages/register/register?type=${tipRole}`,
+
+          })
+        }
+      })
+    }
   },
   handleNav(e){
     const targetUrl = e.currentTarget.dataset.target

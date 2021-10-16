@@ -1,0 +1,30 @@
+/* pages/register/register.wxss */
+
+
+.register{
+  margin: 80rpx;
+}
+
+.formItem{
+  display: flex;
+  margin-bottom: 40rpx;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 30rpx;
+}
+
+.label{
+  flex: 1 0 20%;
+
+}
+
+.input{
+  flex: 1 0 20%;
+  text-align: right;
+}
+
+.userinfo-avatar{
+  overflow: hidden;
+  flex-basis: 128rpx;
+  height: 128rpx;
+  border-radius: 50%;
+}
