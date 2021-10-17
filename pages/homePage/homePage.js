@@ -80,7 +80,8 @@ Page({
   
   checkIsLogin(role, currentRoleType){
     const tipRole = currentRoleType == 'ROLE_PATIENT' ? '患者' : '医生';
-    if(!role){
+    const that = this;
+    if(!user){
       wx.showModal({
         title: '提示',
         content: `您还未注册为${tipRole}，请点击注册按钮进行注册`,
@@ -89,6 +90,13 @@ Page({
           if(res.confirm){
             wx.navigateTo({
               url: `/pages/register/register?type=${tipRole}`,
+              events: {
+                registerSuccess(){
+                  that.setData({
+                    isLogin: true
+                  })
+                }
+              }
             })
           }
           

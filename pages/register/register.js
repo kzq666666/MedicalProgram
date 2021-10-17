@@ -35,10 +35,57 @@ Page({
     console.log(this.data.userInfo)
   },
   submitRegister(){
+    const that = this;
     registerDoctor({
-
+        "city": "广州",
+        "country": "china",
+        "gender": that.data.userInfo.gender,
+        "id": "7",
+        "imageUrl": that.data.userInfo.avatarUrl,
+        "jobNumber": "string",
+        "name": that.data.userInfo.nickName,
+        "nickName": that.data.userInfo.nickName,
+        "openid": wx.getStorageSync('openId'),
+        "province": "广东"
     }).then(res=>{
-      console.log(res)
+      if(res.statusCode == 201){
+        wx.showToast({
+          title: '注册成功',
+          icon: 'success',
+          duration: 1000,
+          mask: true,
+          complete: ()=>{
+            const eventChannel = that.getOpenerEventChannel()
+            eventChannel.emit('registerSuccess', res.data)
+            setTimeout(
+              ()=> {
+                wx.navigateBack({
+                  delta: 1,
+                })
+              },
+              1000
+            )
+          }
+        })
+      }else{
+        wx.showToast({
+          title: '注册失败',
+          icon: 'error',
+          duration: 1000,
+          mask: true,
+          complete: ()=>{
+            const eventChannel = that.getOpenerEventChannel()
+            setTimeout(
+              ()=> {
+                wx.navigateBack({
+                  delta: 1,
+                })
+              },
+              1000
+            )
+          }
+        })
+      }
     })
   },
   /**

@@ -5,7 +5,7 @@ function request(options={}){
         wx.request(Object.assign(
             {
                 header: {
-                    'token': wx.getStorageSync('token')
+                    'Authorization': 'Bearer ' + wx.getStorageSync('token')
                 }
             },
             options,
