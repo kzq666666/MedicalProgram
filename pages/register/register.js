@@ -1,5 +1,6 @@
 // pages/register/register.js
 const app = getApp();
+import {registerDoctor} from '../../service/loginPage/index'
 Page({
 
   /**
@@ -33,6 +34,13 @@ Page({
     this.data.userInfo[label] = value;
     console.log(this.data.userInfo)
   },
+  submitRegister(){
+    registerDoctor({
+
+    }).then(res=>{
+      console.log(res)
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -41,8 +49,10 @@ Page({
     this.setData({
       type: options.type,
       userInfo: app.globalData.userInfo
+
     })
     console.log(this.data.userInfo)
+    console.log(registerDoctor)
   },
 
   /**

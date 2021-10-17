@@ -1,6 +1,5 @@
 /* pages/register/register.wxss */
 
-
 .register{
   margin: 80rpx;
 }
