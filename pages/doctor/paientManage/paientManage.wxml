@@ -1,0 +1,8 @@
+
+
+<view class="wrapper">
+  <navigator  open-type="navigate"  url="/pages/doctor/wound/wound?wound=血管疾病" class="wrapperItem">血管疾病所致创面</navigator>
+  <navigator  open-type="navigate"  url="/pages/doctor/wound/wound?wound=糖尿病" class="wrapperItem">糖尿病创面</navigator>
+  <navigator  open-type="navigate"  url="/pages/doctor/wound/wound?wound=外伤" class="wrapperItem">外伤创面</navigator>
+  <navigator  open-type="navigate" class="wrapperItem">其他</navigator>
+</view>

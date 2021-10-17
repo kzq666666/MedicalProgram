@@ -11,3 +11,21 @@
 page{
   background-color: rgb(238, 238, 254);
 }
+
+.wrapper{
+  display: flex;
+  padding: 30rpx;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.wrapperItem{
+  flex: 1 0 50%;
+  height: 300rpx;
+  margin: 20rpx;
+  background-color: #fff;
+  text-align: center;
+  line-height: 300rpx;
+}

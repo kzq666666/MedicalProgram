@@ -12,23 +12,27 @@
   </view>
   <view class="personPage" wx:else>
     <view class="personalInfo">
-      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <image class="userinfo-avatar" src="{{userInfo.imageUrl}}" mode="cover"></image>
       <view class="rightCon">
         <text class="nickName">{{userInfo.nickName ? userInfo.nickName:123}}</text>
-        <text class="type">{{isDoctor?'医生':'患者'}}</text>
+        <text class="type">{{isDoctor?'主管医生':'患者'}}</text>
       </view>
 
     </view>
     <view class="moduleContainer" wx:if="{{isDoctor}}">
       <view wx:for="{{doctorPage}}" wx:for-index="index" wx:key="index" class="moduleItem" bindtap="handleNav" data-target="{{item.targetUrl}}">
+        <text>{{item.name}}</text>
       </view>
+
     </view>
     <view class="moduleContainer" wx:else>
       <view wx:for="{{patientPage}}" wx:for-index="index" wx:key="index" class="moduleItem" bindtap="handleNav" data-target="{{item.targetUrl}}">
         <text>{{item.name}}</text>
-      
+
       </view>
-    
-  </view>
+    </view>
+    <view class="centerWrap">
+      <text class="loginOutText" bindtap="loginOut">退出登录</text>
+    </view>    
   </view>
 </view>

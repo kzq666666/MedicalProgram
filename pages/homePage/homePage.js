@@ -5,6 +5,7 @@ Page({
     userInfo: {},
     isLogin: false,
     isFirstLogin: true,
+    isDoctor: false,
     testUrl: '',
     doctorPage: [
       {
@@ -65,7 +66,7 @@ Page({
                 data: params,
                 success(res){
                   console.log(res)
-                  that.checkIsLogin(res.role, type)
+                  that.checkIsLogin(res, type)
                   wx.setStorageSync('token', res.data.token);
                   wx.setStorageSync('openId', res.data.openid)
                 }
@@ -78,10 +79,11 @@ Page({
    
   },
   
-  checkIsLogin(role, currentRoleType){
+  checkIsLogin(res, currentRoleType){
     const tipRole = currentRoleType == 'ROLE_PATIENT' ? '患者' : '医生';
+    const role = res.data.role;
     const that = this;
-    if(!user){
+    if(!role){
       wx.showModal({
         title: '提示',
         content: `您还未注册为${tipRole}，请点击注册按钮进行注册`,
@@ -102,7 +104,19 @@ Page({
           
         }
       })
+    }else if(role == 'ROLE_DOCTOR'){
+      this.setData({
+        isLogin: true,
+        isDoctor: true,
+        userInfo: res.data.user
+      })
     }
+  },
+
+  loginOut(){
+    this.setData({
+      isLogin: false
+    })
   },
   handleNav(e){
     const targetUrl = e.currentTarget.dataset.target

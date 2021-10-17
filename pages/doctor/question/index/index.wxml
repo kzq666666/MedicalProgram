@@ -1,0 +1,4 @@
+<!--pages/doctor/question/question.wxml-->
+<view class="wrapper">
+  <navigator wx:for="{{questionPageList}}" wx:key="key" open-type="navigate"  url="{{item.target}}" class="wrapperItem">{{item.name}}</navigator>
+</view>

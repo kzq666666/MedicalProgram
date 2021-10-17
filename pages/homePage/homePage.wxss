@@ -64,3 +64,13 @@
   align-items: center;
   justify-content: center;
 }
+
+.centerWrap{
+  margin-top: 88rpx;
+  text-align: center;
+}
+.loginOutText{
+  color: rgb(219, 122, 122);
+  font-size: 30rpx;
+}
+
