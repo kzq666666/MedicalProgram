@@ -39,10 +39,22 @@
   padding-right: 40rpx;
 }
 .nickName{
+  position: relative;
   font-size: 32rpx;
   font-weight: bold;
 }
-
+.nickName:after{
+  content: '';
+  position: absolute;
+  right: 0;
+  width: 18rpx;
+  height: 18rpx;
+  border-top: 1px solid #656565;
+  border-right: 1px solid #656565;
+  transform: rotate(45deg);
+  top: 50%;
+  margin-top: -9rpx;
+}
 .type{
   margin-top: 10rpx;
   color: #FF716D;
@@ -73,4 +85,5 @@
   color: rgb(219, 122, 122);
   font-size: 30rpx;
 }
+
 

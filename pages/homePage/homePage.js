@@ -3,7 +3,7 @@ const app = getApp()
 Page({
   data: {
     userInfo: {},
-    isLogin: false,
+    isLogin: true,
     isFirstLogin: true,
     isDoctor: false,
     testUrl: '',
@@ -14,7 +14,7 @@ Page({
       },
       {
         "name": '患者管理',
-        "targetUrl": "/page/"
+        "targetUrl": "/pages/doctor/paientManage/paientManage"
       },
       {
         "name": '照片问卷',

@@ -14,7 +14,7 @@
     <view class="personalInfo">
       <image class="userinfo-avatar" src="{{userInfo.imageUrl}}" mode="cover"></image>
       <view class="rightCon">
-        <text class="nickName">{{userInfo.nickName ? userInfo.nickName:123}}</text>
+          <text class="nickName" bindtap="handleNav" data-target="{{patientPage[0].targetUrl}}">{{userInfo.nickName ? userInfo.nickName:123}}</text>
         <text class="type">{{isDoctor?'主管医生':'患者'}}</text>
       </view>
 

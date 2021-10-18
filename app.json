@@ -1,24 +1,25 @@
 {
-  "pages": [
-    "pages/doctor/question/index/index",
-    "pages/homePage/homePage",
-    "pages/logs/logs",
-    "pages/doctor/index/index",
-    "pages/paient/personalInfo/personalInfo",
-    "pages/register/register",
-    "pages/doctor/wound/wound",
-    "pages/doctor/paientManage/paientManage",
-    "pages/doctor/question/newPic/newPic",
-    "pages/doctor/question/newQuot/newQuot",
-    "pages/doctor/question/picInfo/picInfo",
-    "pages/doctor/question/quotInfo/quotInfo"
-  ],
-  "window": {
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "Weixin",
-    "navigationBarTextStyle": "black"
-  },
-  "style": "v2",
-  "sitemapLocation": "sitemap.json"
+    "pages": [
+        "pages/homePage/homePage",
+        "pages/logs/logs",
+        "pages/doctor/index/index",
+        "pages/paient/personalInfo/personalInfo",
+        "pages/register/register",
+        "pages/doctor/wound/wound",
+        "pages/doctor/paientManage/paientManage",
+        "pages/doctor/question/newPic/newPic",
+        "pages/doctor/question/newQuot/newQuot",
+        "pages/doctor/question/picInfo/picInfo",
+        "pages/doctor/question/quotInfo/quotInfo",
+        "pages/doctor/question/index/index",
+        "pages/info/info"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "Weixin",
+        "navigationBarTextStyle": "black"
+    },
+    "style": "v2",
+    "sitemapLocation": "sitemap.json"
 }
