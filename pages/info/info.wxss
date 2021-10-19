@@ -1,1 +1,33 @@
 /* pages/info/info.wxss */
+
+.flexBox{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.flexItemLeft{
+    flex: 1 0 20%;
+    height: 100rpx;
+    line-height: 100rpx;
+    padding-left: 50rpx;
+    border-top: 1px solid #ddd;
+}
+
+.flexItemRight{
+    flex: 1 0 50%;
+    height: 100rpx;
+    line-height: 100rpx;
+    border-top: 1px solid #ddd;
+    text-align: right;
+    padding-right: 50rpx;
+}
+
+.pageBottom{
+    position: absolute;
+    bottom:60rpx;
+    border-radius: 85rpx;
+    left: 50%;
+    transform: translateX(-50%);
+}

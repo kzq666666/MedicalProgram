@@ -7,6 +7,7 @@ Page({
     isFirstLogin: true,
     isDoctor: false,
     testUrl: '',
+    infoTarget: '/pages/info/info',
     doctorPage: [
       {
         "name": '通知信息',

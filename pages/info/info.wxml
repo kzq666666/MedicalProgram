@@ -1,2 +1,16 @@
 <!--pages/info/info.wxml-->
-<text>pages/info/info.wxml</text>
+<view class="flexBox">
+    <view class="flexItemLeft">
+        头像
+    </view>
+    <view class="flexItemRight">
+        <img src="{{userInfo.imageUrl}}" alt=""></img>
+    </view>
+    <view class="flexItemLeft">
+        姓名
+    </view>
+    <view class="flexItemRight">
+        <img src="{{userInfo.nickName}}" alt=""></img>
+    </view>
+</view>
+<button class="pageBottom" type="primary">保存</button>
