@@ -1,4 +1,4 @@
-const baseUrl = "http://120.24.254.248"
+const baseUrl = "https://be.woundhealth.cn"
 function request(options={}){
     options["url"] = baseUrl + options["url"]
     return new Promise((res, rej)=>{

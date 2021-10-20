@@ -1,4 +1,5 @@
 // pages/info/info.js
+import {getAllDoctors} from '../../service/loginPage/index'
 const app = getApp();
 Page({
 
@@ -7,13 +8,60 @@ Page({
      */
     data: {
         basic: ["头像", '姓名', ''],
-        userInfo: ""
+        userInfo: {
+            
+        },
+        genderArray: ['男', '女'],
+        type: '患者',
+        doctorList: [],
+        doctorName: [],
+        mainDoctor: {},
+        index: 0
     },
-
+    bindinputVal(e){
+        this.setData({
+            'userInfo.nickName' : e.detail.value
+        })
+    },
+    bindPickerChange(e){
+        this.setData({
+            'userInfo.gender' : e.detail.value
+        })
+        console.log(this.data.userInfo.gender)
+    },
+    changeDoctor(e){
+        this.setData({
+            index: e.detail.value,
+            mainDoctor: this.data.doctorList[e.detail.value]
+        })
+    },
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        console.log(options)
+        if(options.isDoctor){
+            this.setData({
+                type: '主治医生'
+            })
+        }else{
+            this.setData({
+                type: '患者'
+            })
+        }
+        if(this.data.type == '患者'){
+            let doctorName = []
+            getAllDoctors().then(res=>{
+                res.data.forEach((ele)=>{
+                    doctorName.push(ele.name)
+                })
+                this.setData({
+                    doctorList: res.data,
+                    doctorName: doctorName
+                })
+            })
+        }
+        console.log(app.globalData.userInfo)
         this.setData(
             {
                 userInfo: app.globalData.userInfo

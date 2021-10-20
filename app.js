@@ -16,6 +16,6 @@ App({
   globalData: {
     testName: 'kzq',
     userInfo: null,
-    url: "http://120.24.254.248/api"
+    url: "https://be.woundhealth.cn/api"
   }
 })

@@ -15,3 +15,11 @@ export const registerPatient = (params = params?params:{})=>{
         data: params
     })
 }
+
+export const getAllDoctors = (params = params?params:{})=>{
+    return request({
+        url: '/api/doctors',
+        method: 'GET',
+        data: params
+    })
+}

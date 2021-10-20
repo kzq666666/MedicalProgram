@@ -1,6 +1,5 @@
 {
     "pages": [
-        "pages/info/info",
         "pages/homePage/homePage",
         "pages/logs/logs",
         "pages/doctor/index/index",
@@ -12,7 +11,8 @@
         "pages/doctor/question/newQuot/newQuot",
         "pages/doctor/question/picInfo/picInfo",
         "pages/doctor/question/quotInfo/quotInfo",
-        "pages/doctor/question/index/index"
+        "pages/doctor/question/index/index",
+        "pages/info/info"
     ],
     "window": {
         "backgroundTextStyle": "light",

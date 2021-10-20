@@ -1,10 +1,13 @@
 /* pages/info/info.wxss */
 
-.flexBox{
+
+.flexItem{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
+    height: 100rpx;
+    border-top: 1px solid #ddd;
 }
 
 .flexItemLeft{
@@ -12,22 +15,44 @@
     height: 100rpx;
     line-height: 100rpx;
     padding-left: 50rpx;
-    border-top: 1px solid #ddd;
+
+}
+
+.height200{
+    height: 200rpx;
 }
 
 .flexItemRight{
     flex: 1 0 50%;
     height: 100rpx;
     line-height: 100rpx;
-    border-top: 1px solid #ddd;
     text-align: right;
     padding-right: 50rpx;
 }
-
+.userinfo-avatar{
+    flex: none;
+    width: 140rpx;
+    height: 140rpx;
+    border-radius: 50%;
+    margin-right: 50rpx;
+    padding: 0;
+}
 .pageBottom{
     position: absolute;
     bottom:60rpx;
     border-radius: 85rpx;
     left: 50%;
     transform: translateX(-50%);
+}
+
+.inputClass{
+    width: 100%;
+    height: 100%;
+}
+
+.floatLeft{
+    float: left;
+}
+.floatRight{
+    float:right
 }

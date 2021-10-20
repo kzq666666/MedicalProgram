@@ -3,7 +3,7 @@ const app = getApp()
 Page({
   data: {
     userInfo: {},
-    isLogin: true,
+    isLogin: false,
     isFirstLogin: true,
     isDoctor: false,
     testUrl: '',
@@ -56,7 +56,6 @@ Page({
         params["iv"] = res.iv
         params["rawData"] = res.rawData
         params["signature"] = res.signature
-        app.globalData.userInfo = res.userInfo
         wx.login({
           success(res){
             if(res.code){
@@ -68,6 +67,8 @@ Page({
                 success(res){
                   console.log(res)
                   that.checkIsLogin(res, type)
+                  app.globalData.userInfo = res.data.user
+
                   wx.setStorageSync('token', res.data.token);
                   wx.setStorageSync('openId', res.data.openid)
                 }
@@ -123,8 +124,16 @@ Page({
     const targetUrl = e.currentTarget.dataset.target
     wx.navigateTo(
       {
-        url: targetUrl
-      }
+        url: targetUrl + '?isDoctor=' + this.data.isDoctor,
+        events: {
+          editSuccess(userInfo){
+            that.setData({
+              userInfo: userInfo
+            })
+          }
+        }
+      },
+      
     )
   },
   /**
