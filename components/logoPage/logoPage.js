@@ -11,7 +11,7 @@ Component({
    * 组件的初始数据
    */
   data: {
-    title: "医疗系统"
+    title: "WoundHealth"
   },
 
   /**

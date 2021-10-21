@@ -1,0 +1,15 @@
+<!--pages/paient/personalInfo/personalInfo.wxml-->
+
+<view class="personalInfo">
+  <view wx:for="{{personalInfoItem}}" class="personalInfoItem">
+    <view class="tag">
+      <text> {{item.name}}：</text>
+    </view>
+    <view class="info" wx:if="{{item.name !== '主管医生'}}">{{item.value}}</view>
+    <view class="info leftInfo" wx:else>
+      
+      <text style="margin-right: 50rpx;"> {{item.value}}</text>
+      <button class="infoBt" type="primary" bindtap="goToComment">评价</button>
+    </view>
+  </view>
+</view>

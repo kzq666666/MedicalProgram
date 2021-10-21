@@ -1,11 +1,11 @@
-// pages/paient/personalInfo/personalInfo.js
+// pages/patient/myMsg/myMsg.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    personalInfoItem:["姓名", "病例号", "诊断", "出院时间", "主管医生", "检查资料"]
+
   },
 
   /**

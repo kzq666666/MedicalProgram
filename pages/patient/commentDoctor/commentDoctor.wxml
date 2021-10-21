@@ -1,0 +1,26 @@
+<!--pages/patient/commentDoctor/commentDoctor.wxml-->
+<view class="commentPage">
+    <view class="height200rpx border-bottom-ddd">
+      <text >医生姓名：</text>
+      <view style="font-weight: bolder;">test</view>
+    </view>
+    <view class="height200rpx">
+      <view class="tag">评分：</view>
+      <view class=""></view>
+    </view>
+    <view class="section section_gap">
+            <radio-group class="radio-group" bindchange="radioChange">
+                <radio class="radio" wx:for-items="{{commentValue}}" wx:key="name" value="{{item.name}}" checked="{{item.checked}}">
+                    <text>{{item.value}}</text>
+                </radio>
+            </radio-group>
+        </view>
+    <view class="height200rpx">
+      <view class="tag">意见和建议：</view>
+    </view>
+    <view class="textarea-wrp">
+      <textarea auto-focus="true" style="height: 15em"  placeholder="请输入你的意见和建议"/>
+    </view>
+</view>
+<button type="primary" bindtap="submitComment">保存</button>
+

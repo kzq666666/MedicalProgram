@@ -17,6 +17,22 @@
         </view>
       </picker>
     </view>
+    <block wx:if="{{type=='患者'}}">
+      <view class="formItem">
+        <text class="label">患者病号</text>
+        <input type="text" class="input" value="{{userInfo.patientNumber}}" bindinput="valueChange" data-label="patientNumber"></input>
+      </view>
+      
+      <view class="formItem">
+        <text class="label">主治医生</text>
+        <picker class="flexItemRight" bindchange="changeDoctor" value="{{index}}" range="{{doctorName}}">
+                <view class="picker">
+                    {{doctorName[index]}}
+                </view>
+            </picker>
+      </view>
+    </block>
+
     <view class="formItem">
       <text class="label">类型</text>
       <input type="text" class="input" value="{{type}}" disabled></input>

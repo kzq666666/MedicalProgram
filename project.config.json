@@ -45,5 +45,6 @@
     "showES6CompileOption": false,
     "useCompilerPlugins": false
   },
+  "projectname": "WoundHealth",
   "condition": {}
 }

@@ -18,10 +18,7 @@
   text-align: left;
 }
 .infoBt{
-  width: 160rpx !important;
+  display: inline;
   margin: 0 !important;
-  height: 85rpx;
-}
-.leftInfo{
-  text-align: left;
+  font-size: 25rpx;
 }

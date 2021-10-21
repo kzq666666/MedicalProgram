@@ -31,3 +31,7 @@ page{
   text-align: center;
   line-height: 300rpx;
 }
+
+.border-bottom-ddd{
+  border-bottom: 1px solid #ddd;
+}

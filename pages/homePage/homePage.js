@@ -4,7 +4,7 @@ Page({
   data: {
     userInfo: {},
     defaultInfo: {},
-    isLogin: false,
+    isLogin: true,
     isFirstLogin: true,
     isDoctor: false,
     testUrl: '',
@@ -30,11 +30,12 @@ Page({
     patientPage:[
       {
         "name": "个人资料",
-        "targetUrl": "/pages/paient/personalInfo/personalInfo"
+        "targetUrl": "/pages/patient/personalInfo/personalInfo"
       },
       {
         "name": "我的消息",
-        "targetUrl": "/pages/"
+        "targetUrl":  "/pages/patient/myMsg/myMsg"
+
       },
       {
         "name": "我的照片",
@@ -84,8 +85,7 @@ Page({
     const tipRole = currentRoleType == 'ROLE_PATIENT' ? '患者' : '医生';
     const role = res.data.role;
     const that = this;
-    console.log(currentRoleType)
-    if(role!=currentRoleType){
+    if(!role || role!=currentRoleType){
       wx.showModal({
         title: '提示',
         content: `您还未注册为${tipRole}，请点击注册按钮进行注册`,
@@ -106,13 +106,13 @@ Page({
           
         }
       })
-    }else if(role == 'ROLE_DOCTOR'){
+    }else{
       app.globalData.userInfo = res.data.user
       wx.setStorageSync('token', res.data.token);
       wx.setStorageSync('openId', res.data.openid)
       this.setData({
         isLogin: true,
-        isDoctor: true,
+        isDoctor: currentRoleType=='ROLE_PATIENT'?false:true,
         userInfo: res.data.user
       })
     }

@@ -1,5 +1,5 @@
 // pages/info/info.js
-import {getAllDoctors, editDoctorInfo} from '../../service/loginPage/index'
+import {getAllDoctors, editDoctorInfo, editPatientInfo} from '../../service/loginPage/index'
 const app = getApp();
 Page({
 
@@ -59,6 +59,36 @@ Page({
                     }
                   })
             })
+        }else{
+            editPatientInfo(this.data.userInfo).then((res)=>{
+                if(res.statusCode == 403){
+                    wx.showToast({
+                        title: '修改失败',
+                        icon: 'error',
+                        duration: 1000,
+                        mask: true
+                      })
+                }else{
+                    wx.showToast({
+                        title: '修改成功',
+                        icon: 'success',
+                        duration: 1000,
+                        mask: true,
+                        complete: ()=>{
+                          const eventChannel = that.getOpenerEventChannel()
+                          eventChannel.emit('editSuccess', res.data)
+                          setTimeout(
+                            ()=> {
+                              wx.navigateBack({
+                                delta: 1,
+                              })
+                            },
+                            1000
+                          )
+                        }
+                      })
+                }
+            })  
         }
     },
     /**
@@ -66,7 +96,7 @@ Page({
      */
     onLoad: function (options) {
         console.log(options)
-        if(options.isDoctor){
+        if(options.isDocto == 'true'){
             this.setData({
                 type: '主治医生'
             })
@@ -87,7 +117,6 @@ Page({
                 })
             })
         }
-        console.log(app.globalData.userInfo)
         this.setData(
             {
                 userInfo: app.globalData.userInfo
@@ -99,7 +128,7 @@ Page({
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady: function () {
-
+        
     },
 
     /**

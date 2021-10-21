@@ -1,0 +1,21 @@
+/* pages/patient/commentDoctor/commentDoctor.wxss */
+
+.commentPage{
+  padding: 50rpx;
+}
+.height200rpx{
+  display: flex;
+  height: 100rpx;
+  line-height: 100rpx;
+}
+.textarea-wrp {
+  padding: 25rpx;
+  background-color: #fff;
+}
+.section{
+  border-bottom: 1px solid #ddd;
+}
+.radio{
+  display: block;
+  padding: 5px;
+}
