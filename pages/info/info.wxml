@@ -34,4 +34,4 @@
 
 </view>
 
-<button class="pageBottom" type="primary">保存</button>
+<button class="pageBottom" type="primary" bindtap="submitEditInfo">保存</button>

@@ -1,6 +1,6 @@
 // pages/register/register.js
 const app = getApp();
-import {registerDoctor} from '../../service/loginPage/index'
+import {registerDoctor, registerPatient} from '../../service/loginPage/index'
 Page({
 
   /**
@@ -9,14 +9,14 @@ Page({
   data: {
     userInfo: '',
     type: '',
-    genderArray: ['女', '男'],
+    genderArray: ['男', '女'],
     genderPicker: [
       {
-        id: '1',
+        id: '0',
         name: '男'
       },
       {
-        id: '0',
+        id: '1',
         name: '女'
       }
 

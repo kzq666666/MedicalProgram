@@ -3,6 +3,7 @@ const app = getApp()
 Page({
   data: {
     userInfo: {},
+    defaultInfo: {},
     isLogin: false,
     isFirstLogin: true,
     isDoctor: false,
@@ -56,6 +57,8 @@ Page({
         params["iv"] = res.iv
         params["rawData"] = res.rawData
         params["signature"] = res.signature
+        app.globalData.userInfo = res.userInfo
+
         wx.login({
           success(res){
             if(res.code){
@@ -65,12 +68,8 @@ Page({
                 method: 'post',
                 data: params,
                 success(res){
-                  console.log(res)
                   that.checkIsLogin(res, type)
-                  app.globalData.userInfo = res.data.user
-
-                  wx.setStorageSync('token', res.data.token);
-                  wx.setStorageSync('openId', res.data.openid)
+                 
                 }
               })
             }
@@ -85,7 +84,8 @@ Page({
     const tipRole = currentRoleType == 'ROLE_PATIENT' ? '患者' : '医生';
     const role = res.data.role;
     const that = this;
-    if(!role){
+    console.log(currentRoleType)
+    if(role!=currentRoleType){
       wx.showModal({
         title: '提示',
         content: `您还未注册为${tipRole}，请点击注册按钮进行注册`,
@@ -107,6 +107,9 @@ Page({
         }
       })
     }else if(role == 'ROLE_DOCTOR'){
+      app.globalData.userInfo = res.data.user
+      wx.setStorageSync('token', res.data.token);
+      wx.setStorageSync('openId', res.data.openid)
       this.setData({
         isLogin: true,
         isDoctor: true,
@@ -122,6 +125,7 @@ Page({
   },
   handleNav(e){
     const targetUrl = e.currentTarget.dataset.target
+    const that = this;
     wx.navigateTo(
       {
         url: targetUrl + '?isDoctor=' + this.data.isDoctor,

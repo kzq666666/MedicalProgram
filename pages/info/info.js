@@ -1,5 +1,5 @@
 // pages/info/info.js
-import {getAllDoctors} from '../../service/loginPage/index'
+import {getAllDoctors, editDoctorInfo} from '../../service/loginPage/index'
 const app = getApp();
 Page({
 
@@ -7,7 +7,6 @@ Page({
      * 页面的初始数据
      */
     data: {
-        basic: ["头像", '姓名', ''],
         userInfo: {
             
         },
@@ -20,7 +19,8 @@ Page({
     },
     bindinputVal(e){
         this.setData({
-            'userInfo.nickName' : e.detail.value
+            'userInfo.nickName' : e.detail.value,
+            'userInfo.name': e.detail.value
         })
     },
     bindPickerChange(e){
@@ -34,6 +34,32 @@ Page({
             index: e.detail.value,
             mainDoctor: this.data.doctorList[e.detail.value]
         })
+    },
+    submitEditInfo(){
+        const that = this;
+        console.log(that)
+        if(this.data.type == '主治医生'){
+            editDoctorInfo(this.data.userInfo).then((res)=>{
+                wx.showToast({
+                    title: '修改成功',
+                    icon: 'success',
+                    duration: 1000,
+                    mask: true,
+                    complete: ()=>{
+                      const eventChannel = that.getOpenerEventChannel()
+                      eventChannel.emit('editSuccess', res.data)
+                      setTimeout(
+                        ()=> {
+                          wx.navigateBack({
+                            delta: 1,
+                          })
+                        },
+                        1000
+                      )
+                    }
+                  })
+            })
+        }
     },
     /**
      * 生命周期函数--监听页面加载

@@ -16,10 +16,20 @@ export const registerPatient = (params = params?params:{})=>{
     })
 }
 
+// Doctor
 export const getAllDoctors = (params = params?params:{})=>{
     return request({
         url: '/api/doctors',
         method: 'GET',
+        data: params
+    })
+}
+
+
+export const editDoctorInfo = (params)=>{
+    return request({
+        url: '/api/doctors/',
+        method: 'PUT',
         data: params
     })
 }
