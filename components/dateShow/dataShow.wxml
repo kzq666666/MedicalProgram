@@ -1,0 +1,6 @@
+<!--components/dateShow/dataShow.wxml-->
+<view >
+  <view class="date">
+  </view>
+  <view class="content"></view>
+</view>

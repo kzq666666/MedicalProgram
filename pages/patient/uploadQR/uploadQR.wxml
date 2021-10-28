@@ -1,0 +1,22 @@
+<!--pages/patient/uploadPic/uploadPic.wxml-->
+<view class="flex-box">
+  <view class="flex-item">
+    <view class="flex-left">日期:</view>
+    <view class="flex-right">
+        <picker mode="date" value="{{date}}" bindchange="bindDateChange" start="2016-01-01" end="{{curDate}}">
+            {{date}}
+        </picker>
+    </view>
+  </view>
+  <view class="flex-item">
+    <view class="flex-left">上传图片</view>
+    <view class="flex-right">
+      <!-- <button type="default" style="width:100rpx"> 点击上传</button> -->
+      <image src='http://tva1.sinaimg.cn/large/005Kp0Zxly1gvu07vstl8j305l05kq30.jpg' bindtap='getImage' class="upload-img"></image>
+    </view>
+  </view>
+  <view class="flex-item">
+    <image wx:for="{{tempImg}}" src="{{item}}" class="image-item" bindtap="showImg" data-url="{{item}}"></image>
+  </view>
+</view>
+<button type="primary" class="upload" bindtap="commitUpload">确认上传</button>

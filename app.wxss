@@ -9,6 +9,8 @@
   box-sizing: border-box;
 }  */
 page{
+  width: 100%;
+  height: 100%;
   background-color: rgb(238, 238, 254);
   /* background-color: #fff; */
 
@@ -34,4 +36,14 @@ page{
 
 .border-bottom-ddd{
   border-bottom: 1px solid #ddd;
+}
+
+
+.upload{
+  position: absolute;
+  width: 100% !important;
+  left: 0;
+  right: 0;
+  bottom: 35rpx;
+  border-radius: 15rpx;
 }

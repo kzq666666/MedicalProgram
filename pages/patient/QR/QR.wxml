@@ -1,0 +1,6 @@
+<!--pages/patient/pic/pic.wxml-->
+
+<view class="Box">
+  <dataShow></dataShow>
+</view>
+<button class="upload" type="primary" bindtap="goToNext">上传</button>

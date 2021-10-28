@@ -4,7 +4,7 @@ Page({
   data: {
     userInfo: {},
     defaultInfo: {},
-    isLogin: true,
+    isLogin: false,
     isFirstLogin: true,
     isDoctor: false,
     testUrl: '',
@@ -39,7 +39,7 @@ Page({
       },
       {
         "name": "我的照片",
-        "targetUrl": "/pages/"
+        "targetUrl": "/pages/patient/pic/pic"
       },
       {
         "name": "我的问卷",

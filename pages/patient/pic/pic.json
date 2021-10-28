@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "dataShow": "/components/dateShow/dataShow"
+  },
+  "navigationBarTitleText": "我的照片"
+}

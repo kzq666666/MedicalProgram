@@ -1,5 +1,8 @@
 {
   "pages": [
+    "pages/patient/QR/QR",
+    "pages/patient/uploadQR/uploadQR",
+    "pages/patient/pic/pic",
     "pages/homePage/homePage",
     "pages/logs/logs",
     "pages/doctor/index/index",
@@ -14,7 +17,8 @@
     "pages/info/info",
     "pages/patient/commentDoctor/commentDoctor",
     "pages/patient/personalInfo/personalInfo",
-    "pages/patient/myMsg/myMsg"
+    "pages/patient/myMsg/myMsg",
+    "pages/patient/uploadPic/uploadPic"
   ],
   "window": {
     "backgroundTextStyle": "light",

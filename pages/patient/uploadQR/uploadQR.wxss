@@ -1,0 +1,37 @@
+/* pages/patient/uploadPic/uploadPic.wxss */
+
+.flex-box{
+  padding: 50rpx;
+  display: flex;
+  flex-wrap: wrap;
+}
+.flex-item{
+  display: flex;
+  flex:  1 0 100%;
+  padding: 10rpx;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.flex-left{
+  flex: 1 0 30%;
+  text-align: left;
+
+}
+.flex-right{
+  flex: 1 0 50%;
+  text-align: right;
+}
+
+.upload-img{
+  width: 100rpx;
+  height: 100rpx;
+
+}
+
+.image-item{
+  border: 1px solid black;
+  width: 150rpx;
+  height: 150rpx;
+  margin: 3rpx;
+}

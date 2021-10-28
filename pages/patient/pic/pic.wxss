@@ -1,0 +1,7 @@
+/* pages/patient/pic/pic.wxss */
+.Box{
+  height: 80vh;
+  padding: 50rpx;
+}
+
+
