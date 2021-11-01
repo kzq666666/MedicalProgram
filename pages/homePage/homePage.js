@@ -1,5 +1,5 @@
 const app = getApp()
-
+import {getPatientsInfo} from '../../service/loginPage/index'
 Page({
   data: {
     userInfo: {},
@@ -107,14 +107,23 @@ Page({
         }
       })
     }else{
-      app.globalData.userInfo = res.data.user
       wx.setStorageSync('token', res.data.token);
       wx.setStorageSync('openId', res.data.openid)
-      this.setData({
-        isLogin: true,
-        isDoctor: currentRoleType=='ROLE_PATIENT'?false:true,
-        userInfo: res.data.user
-      })
+      console.log(currentRoleType)
+      if(currentRoleType == 'ROLE_PATIENT'){
+        getPatientsInfo({
+          openid: res.data.openid
+        }).then(res=>{
+          app.globalData.userInfo = res.data.user
+          wx.setStorageSync('userInfo', res.data)
+          this.setData({
+            isLogin: true,
+            isDoctor: currentRoleType=='ROLE_PATIENT'?false:true,
+            userInfo: res.data
+          })
+        })
+      }
+     
     }
   },
 

@@ -1,22 +1,28 @@
 // pages/patient/uploadPic/uploadPic.js
+import {
+  uploadNewPic,
+  getDomainUpload
+} from '../../../service/PhotoRecord/index'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    date:"2016-09-01",
+    date: "2016-09-01",
     curDate: "",
     tempImg: [],
-    firstUpLoad: true
+    tempFiles: [],
+    firstUpLoad: true,
+    userInfo: null
   },
-  bindDateChange(e){
+  bindDateChange(e) {
     this.setData({
       date: e.detail.value
     })
   },
-  showImg(e){
-    console.log( e.detail)
+  showImg(e) {
+    console.log(e.detail)
     const imgUrl = e.currentTarget.dataset.url;
     const that = this;
     wx.previewImage({
@@ -28,45 +34,95 @@ Page({
     let that = this;
     const len = 10 - that.data.tempImg.length;
     console.log(len, that.data.firstUpLoad)
-    if(len > 0  || that.data.firstUpLoad){
+    if (len > 0 || that.data.firstUpLoad) {
       wx.chooseImage({
         count: len, // 默认9
         sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
         sourceType: ['album'], // 可以指定来源是相册还是相机，默认二者都有
         success: function (res) {
           // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+          console.log(res)
           that.setData({
-            tempImg: [...that.data.tempImg, ...res.tempFilePaths]
+            tempImg: [...that.data.tempImg, ...res.tempFilePaths],
+            tempFiles: [...that.data.tempFiles, ...res.tempFiles]
           })
-          if(that.data.firstUpLoad){
+          if (that.data.firstUpLoad) {
             that.data.firstUpLoad = false;
           }
         }
       })
-    }else if(len == 0){
+    } else if (len == 0) {
       wx.showToast({
         title: '最多10张',
         icon: 'error',
         duration: 1000,
-        mask:true
-    })
+        mask: true
+      })
     }
-   
-  },
-    takePhoto: function () {
-    wx.chooseImage({
-      count: 1, // 默认9
-      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-      sourceType: ['camera'], // 可以指定来源是相册还是相机，默认二者都有
-      success: function (res) {
-        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-        var tempFilePaths = res.tempFilePaths
 
-      }
-    })
   },
-  commitUpload(){
-    
+
+  commitUpload() {
+    // getDomainUpload().then((res)=>{
+    //   console.log(res)
+    // })
+    // const formData = new FormData()
+    // formData.append(patientId, this.data.userInfo)
+    // formData.append(date, this.data.date)
+    // formData.append(patientId, this.data.userInfo)
+    function getFormdata(obj = {}) {
+      let result = ''
+      for (let name of Object.keys(obj)) {
+        let value = obj[name];
+        result +=
+          '\r\n--XXX' +
+          '\r\nContent-Disposition: form-data; name="' + name + '"' +
+          '\r\n' +
+          '\r\n' + value
+      }
+      return result + '\r\n--XXX--'
+    }
+    const token = 'Bearer' + ' ' + wx.getStorageSync('token');
+    console.log(token)
+      wx.uploadFile({
+
+        //请求后台的路径
+        url: 'https://be.woundhealth.cn/api/photo-records',
+
+        //小程序本地的路径
+        filePath: this.data.tempImg[0],
+        header: {
+          "Authorization": token,
+        },
+
+        //后台获取我们图片的key
+        name: 'pictures',
+
+        //额外的参数formData
+        formData: {
+          patientId: this.data.userInfo.id,
+          date: this.data.date,
+        },
+        success: function (res) {
+        //上传成功
+          console.log(res)
+        },
+        fail: function (res) {
+            console.log(res)
+        },
+    })
+
+
+    // uploadNewPic(getFormdata({
+    //   patientId: this.data.userInfo.id,
+    //   date: this.data.date,
+    //   pictures: [wx.getFileSystemManager().readFileSync(this.data.tempImg[0], 'base64')]
+    // }), {
+    //   "Content-Type": "multipart/form-data; boundary=XXX"
+    // })
+    // wx.navigateBack({
+    //   delta: 0,
+    // })
   },
   /**
    * 生命周期函数--监听页面加载
@@ -76,17 +132,18 @@ Page({
     let year = curDate.getFullYear();
     let month = curDate.getMonth() + 1;
     let date = curDate.getDate();
-    let fill = (e) =>{
-      if(e<10){
+    let fill = (e) => {
+      if (e < 10) {
         return '0' + e;
-      }else{
+      } else {
         return e;
       }
     }
     let res = `${year}-${month}-${fill(date)}`
     this.setData({
       date: res,
-      curDate: res
+      curDate: res,
+      userInfo: wx.getStorageSync('userInfo')
     })
   },
 

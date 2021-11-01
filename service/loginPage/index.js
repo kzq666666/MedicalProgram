@@ -44,3 +44,11 @@ export const editPatientInfo = (params)=>{
         data: params
     })
 }
+
+
+export const getPatientsInfo = (params={}) =>{
+    return request({
+        url: '/api/patients/openid/' + params.openid,
+        method: 'GET' 
+    })
+}
