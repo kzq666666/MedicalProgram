@@ -70,59 +70,33 @@ Page({
     // formData.append(patientId, this.data.userInfo)
     // formData.append(date, this.data.date)
     // formData.append(patientId, this.data.userInfo)
-    function getFormdata(obj = {}) {
-      let result = ''
-      for (let name of Object.keys(obj)) {
-        let value = obj[name];
-        result +=
-          '\r\n--XXX' +
-          '\r\nContent-Disposition: form-data; name="' + name + '"' +
-          '\r\n' +
-          '\r\n' + value
-      }
-      return result + '\r\n--XXX--'
-    }
     const token = 'Bearer' + ' ' + wx.getStorageSync('token');
-    console.log(token)
-      wx.uploadFile({
-
-        //请求后台的路径
-        url: 'https://be.woundhealth.cn/api/photo-records',
-
-        //小程序本地的路径
-        filePath: this.data.tempImg[0],
-        header: {
-          "Authorization": token,
-        },
-
-        //后台获取我们图片的key
-        name: 'pictures',
-
-        //额外的参数formData
-        formData: {
-          patientId: this.data.userInfo.id,
-          date: this.data.date,
-        },
-        success: function (res) {
+    wx.uploadFile({
+      //请求后台的路径
+      url: 'https://be.woundhealth.cn/api/photo-records',
+      //小程序本地的路径
+      filePath: this.data.tempImg[0],
+      header: {
+        "Authorization": token,
+        "Content-Type": "multipart/form-data"
+      },
+      //后台获取我们图片的key
+      name: 'pictures',
+      //额外的参数formData
+      formData: {
+        patientId: this.data.userInfo.id,
+        date: this.data.date,
+        readTag: "false"
+      },
+      success: function (res) {
         //上传成功
-          console.log(res)
-        },
-        fail: function (res) {
-            console.log(res)
-        },
+        console.log(res.data)
+      },
+      fail: function (res) {
+        console.log(res)
+      },
     })
 
-
-    // uploadNewPic(getFormdata({
-    //   patientId: this.data.userInfo.id,
-    //   date: this.data.date,
-    //   pictures: [wx.getFileSystemManager().readFileSync(this.data.tempImg[0], 'base64')]
-    // }), {
-    //   "Content-Type": "multipart/form-data; boundary=XXX"
-    // })
-    // wx.navigateBack({
-    //   delta: 0,
-    // })
   },
   /**
    * 生命周期函数--监听页面加载
