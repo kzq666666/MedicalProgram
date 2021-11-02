@@ -1,4 +1,6 @@
 // pages/patient/pic/pic.js
+// 患者页面 我的照片
+import {getPatientAllPic} from '../../../service/PhotoRecord/index'
 Page({
 
   /**
@@ -17,7 +19,6 @@ Page({
     })
   },
   onLoad: function (options) {
-
   },
 
   /**
@@ -31,7 +32,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    // 获取用户照片记录
+    getPatientAllPic({
+      patientId: wx.getStorageSync('userInfo').id
+      
+    }).then(res=>{
+      console.log(res)
+    })
   },
 
   /**

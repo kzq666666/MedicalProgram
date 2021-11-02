@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/patient/pic/pic",
     "pages/patient/uploadPic/uploadPic",
     "pages/homePage/homePage",
-    "pages/patient/pic/pic",
     "pages/patient/QR/QR",
     "pages/patient/uploadQR/uploadQR",
     "pages/logs/logs",

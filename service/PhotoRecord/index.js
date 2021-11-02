@@ -1,11 +1,18 @@
 import request from '../../utils/request' 
 
+// 上传照片记录
 export const uploadNewPic = (params={}, headers={})=>{
-  console.log(params)
   return request({
       url: '/api/photo-records',
-      method: 'post',
+      method: 'POST',
       data: params
+  }, headers)
+}
+// 获取患者所有照片记录接口
+export const getPatientAllPic = (params={}, headers={})=>{
+  return request({
+      url: '/api/photo-records/patient/' + params.patientId,
+      method: 'GET',
   }, headers)
 }
 

@@ -63,40 +63,63 @@ Page({
   },
 
   commitUpload() {
-    // getDomainUpload().then((res)=>{
-    //   console.log(res)
-    // })
-    // const formData = new FormData()
-    // formData.append(patientId, this.data.userInfo)
-    // formData.append(date, this.data.date)
-    // formData.append(patientId, this.data.userInfo)
-    const token = 'Bearer' + ' ' + wx.getStorageSync('token');
-    wx.uploadFile({
-      //请求后台的路径
-      url: 'https://be.woundhealth.cn/api/photo-records',
-      //小程序本地的路径
-      filePath: this.data.tempImg[0],
-      header: {
-        "Authorization": token,
-        "Content-Type": "multipart/form-data"
-      },
-      //后台获取我们图片的key
-      name: 'pictures',
-      //额外的参数formData
-      formData: {
-        patientId: this.data.userInfo.id,
-        date: this.data.date,
-        readTag: "false"
-      },
-      success: function (res) {
-        //上传成功
-        console.log(res.data)
-      },
-      fail: function (res) {
-        console.log(res)
-      },
-    })
-
+    if(!this.data.tempImg.length){
+      wx.showToast({
+        title: '请上传图片',
+        icon: 'error',
+        duration: 1000,
+        mask: true
+      })
+    }else{
+      const token = 'Bearer' + ' ' + wx.getStorageSync('token');
+      const that = this;
+      let finished = false;
+      for(let i = 0;i<that.data.tempImg.length;i++){
+        wx.uploadFile({
+          //请求后台的路径
+          url: 'https://be.woundhealth.cn/api/photo-records',
+          //小程序本地的路径
+          filePath: that.data.tempImg[i],
+          header: {
+            "Authorization": token,
+            "Content-Type": "multipart/form-data"
+          },
+          //后台获取我们图片的key
+          name: 'pictures',
+          //额外的参数formData
+          formData: {
+            patientId: that.data.userInfo.id,
+            date: that.data.date,
+            readTag: "false"
+          },
+          success: function (res) {
+            //上传成功
+            console.log(res.data)
+          },
+          fail: function (res) {
+            console.log(res)
+          },
+        })
+        if(i==that.data.tempImg.length-1){
+          finished = true;
+        }
+      }
+      if(finished){
+        wx.showToast({
+          title: '上传成功',
+          icon: 'success',
+          duration: 1000,
+          mask: true,
+          success: ()=>{
+            setTimeout(() => {
+              wx.navigateBack({
+                delta: 0,
+              })
+            }, 1000);
+          }
+        })
+      }
+    }
   },
   /**
    * 生命周期函数--监听页面加载
