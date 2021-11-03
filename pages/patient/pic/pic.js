@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    patientId: ""
   },
 
   /**
@@ -32,13 +32,16 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    // 获取用户照片记录
-    getPatientAllPic({
+    this.setData({
       patientId: wx.getStorageSync('userInfo').id
-      
-    }).then(res=>{
-      console.log(res)
     })
+    // 获取用户照片记录
+    // getPatientAllPic({
+    //   patientId: wx.getStorageSync('userInfo').id,
+    //   pageSize: 999999
+    // }).then(res=>{
+    //   console.log(res)
+    // })
   },
 
   /**

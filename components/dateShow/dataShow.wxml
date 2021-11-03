@@ -1,6 +1,6 @@
 <!--components/dateShow/dataShow.wxml-->
-<view >
-  <view class="date">
+<view class="wrapper">
+  <view wx:for="{{date}}" wx:key="key" >
+    
   </view>
-  <view class="content"></view>
 </view>

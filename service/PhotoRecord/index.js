@@ -11,7 +11,13 @@ export const uploadNewPic = (params={}, headers={})=>{
 // 获取患者所有照片记录接口
 export const getPatientAllPic = (params={}, headers={})=>{
   return request({
-      url: '/api/photo-records/patient/' + params.patientId,
+      url: `/api/photo-records/patient/${params.patientId}?pageSize=${params.pageSize || 10} ? pageNumber`,
+      method: 'GET',
+  }, headers)
+}
+export const getPatientAllPicDate = (params={}, headers={})=>{
+  return request({
+      url: `/api/photo-records/patient/${params.patientId}/dates`,
       method: 'GET',
   }, headers)
 }
