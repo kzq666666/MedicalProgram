@@ -6,7 +6,6 @@ function request(options={}, headers={}){
         },
         headers
     )
-    console.log(headers)
     options["url"] = baseUrl + options["url"]
     return new Promise((res, rej)=>{
         wx.request(Object.assign(

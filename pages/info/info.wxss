@@ -8,6 +8,7 @@
     justify-content: space-between;
     height: 100rpx;
     border-top: 1px solid #ddd;
+    color: red;
 }
 
 .flexItemLeft{

@@ -21,7 +21,12 @@ export const getPatientAllPicDate = (params={}, headers={})=>{
       method: 'GET',
   }, headers)
 }
-
+export const getPicByDate = (params={}, headers={})=>{
+  return request({
+      url: `/api/photo-records/patient/${params.patientId}/date/${params.date}`,
+      method: 'GET',
+  }, headers)
+}
 
 export const getDomainUpload = (params={}, headers={})=>{
   return request({

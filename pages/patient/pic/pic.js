@@ -10,22 +10,29 @@ Page({
     patientId: ""
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
+
+  getPatientId(){
+    this.setData({
+      patientId: wx.getStorageSync('userInfo').id
+    })
+  },
   goToNext(){
     wx.navigateTo({
       url: '/pages/patient/uploadPic/uploadPic',
     })
   },
+    /**
+   * 生命周期函数--监听页面加载
+   */
   onLoad: function (options) {
+    console.log('onload')
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    console.log('onReady')
   },
 
   /**

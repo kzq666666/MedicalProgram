@@ -1,7 +1,6 @@
 // pages/patient/uploadPic/uploadPic.js
 import {
   uploadNewPic,
-  getDomainUpload
 } from '../../../service/PhotoRecord/index'
 Page({
 

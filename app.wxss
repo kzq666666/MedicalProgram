@@ -47,3 +47,10 @@ page{
   bottom: 35rpx;
   border-radius: 15rpx;
 }
+
+.image-item{
+  border: 1px solid black;
+  width: 150rpx;
+  height: 150rpx;
+  margin: 3rpx;
+}

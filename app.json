@@ -2,9 +2,9 @@
   "pages": [
     "pages/patient/pic/pic",
     "pages/patient/uploadPic/uploadPic",
-    "pages/homePage/homePage",
     "pages/patient/QR/QR",
     "pages/patient/uploadQR/uploadQR",
+    "pages/homePage/homePage",
     "pages/logs/logs",
     "pages/doctor/index/index",
     "pages/register/register",

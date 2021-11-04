@@ -1,1 +1,28 @@
 /* components/dateShow/dataShow.wxss */
+
+.flex{
+  display: flex;
+  align-items: center;
+  height: 60rpx;
+  margin-bottom: 50rpx;
+  
+}
+.leftIcon{
+  margin: 20rpx;
+}
+.text{
+  line-height: 16rpx;
+  font-size: 32rpx;
+}
+.bottomArrow{
+  transform: rotate(90deg);
+}
+.rightArrow{
+  transform: rotate(0deg);
+}
+.image-item{
+  border: 1px solid black;
+  width: 150rpx;
+  height: 150rpx;
+  margin: 3rpx;
+}

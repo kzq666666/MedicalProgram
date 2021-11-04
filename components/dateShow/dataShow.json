@@ -1,4 +1,6 @@
 {
   "component": true,
-  "usingComponents": {}
+  "usingComponents": {
+    "mp-icon": "/components/icon/icon"
+  }
 }

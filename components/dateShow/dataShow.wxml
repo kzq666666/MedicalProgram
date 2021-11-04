@@ -1,6 +1,15 @@
 <!--components/dateShow/dataShow.wxml-->
 <view class="wrapper">
   <view wx:for="{{date}}" wx:key="key" >
-    
+    <view class="flex" bindtap="getPic" data-date="{{item}}" data-index="{{index}}">
+      <mp-icon icon="arrow" color="black" size="{{15}}" type="field" class="leftIcon flexItem {{isShow[index]?'bottomArrow':'rightArrow'}}" color="#424242"></mp-icon>
+      <text class="text">{{item}}</text>
+    </view>
+    <view class="imageShow" wx:if="{{isShow[index]}}">
+      <image wx:for="{{imgList[item]}}"  wx:for-item="imgUrl" src="{{domain +'/' + imgUrl}}" class="image-item" bindtap="showImg" data-list="{{imgList[item]}}" data-url="{{domain +'/' + imgUrl}}"></image>
+      <image wx:for="{{imgList[item]}}"  wx:for-item="imgUrl" src="{{domain +'/' + imgUrl}}" class="image-item" bindtap="showImg" data-list="{{imgList[item]}}" data-url="{{domain +'/' + imgUrl}}"></image>
+      <image wx:for="{{imgList[item]}}"  wx:for-item="imgUrl" src="{{domain +'/' + imgUrl}}" class="image-item" bindtap="showImg" data-list="{{imgList[item]}}" data-url="{{domain +'/' + imgUrl}}"></image>
+      <image wx:for="{{imgList[item]}}"  wx:for-item="imgUrl" src="{{domain +'/' + imgUrl}}" class="image-item" bindtap="showImg" data-list="{{imgList[item]}}" data-url="{{domain +'/' + imgUrl}}"></image>
+    </view>
   </view>
 </view>
