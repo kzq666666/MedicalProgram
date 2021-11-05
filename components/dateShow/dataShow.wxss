@@ -4,7 +4,7 @@
   display: flex;
   align-items: center;
   height: 60rpx;
-  margin-bottom: 50rpx;
+  margin: 50rpx 0;
   
 }
 .leftIcon{
@@ -25,4 +25,11 @@
   width: 150rpx;
   height: 150rpx;
   margin: 3rpx;
+}
+
+.imageShow{
+  padding-left: 10rpx ;
+}
+.wrapperItem{
+  border-bottom: 1px solid #ddd;
 }

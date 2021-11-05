@@ -40,7 +40,7 @@ page{
 
 
 .upload{
-  position: absolute;
+  position: fixed;
   width: 100% !important;
   left: 0;
   right: 0;

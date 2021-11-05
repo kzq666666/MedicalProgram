@@ -16,7 +16,6 @@ Page({
     })
   },
   showImg(e){
-    console.log( e.detail)
     const imgUrl = e.currentTarget.dataset.url;
     const that = this;
     wx.previewImage({
@@ -27,7 +26,6 @@ Page({
   getImage: function () {
     let that = this;
     const len = 10 - that.data.tempImg.length;
-    console.log(len, that.data.firstUpLoad)
     if(len > 0  || that.data.firstUpLoad){
       wx.chooseImage({
         count: len, // 默认9

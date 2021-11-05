@@ -7,14 +7,19 @@ Page({
    * 页面的初始数据
    */
   data: {
-    patientId: ""
+    patientId: "",
+    isFirst: true,
+    isFresh: false
   },
 
-
   getPatientId(){
-    this.setData({
-      patientId: wx.getStorageSync('userInfo').id
-    })
+    if(this.data.isFirst){
+      this.setData({
+        patientId: wx.getStorageSync('userInfo').id,
+        isFirst: false,
+        isFresh: true
+      })
+    }
   },
   goToNext(){
     wx.navigateTo({
@@ -25,7 +30,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log('onload')
+    this.setData({
+      patientId: wx.getStorageSync('userInfo').id
+    })
   },
 
   /**
@@ -39,9 +46,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.setData({
-      patientId: wx.getStorageSync('userInfo').id
-    })
     // 获取用户照片记录
     // getPatientAllPic({
     //   patientId: wx.getStorageSync('userInfo').id,

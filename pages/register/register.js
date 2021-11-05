@@ -30,7 +30,6 @@ Page({
     mainDoctor: {},
   },
   bindPickerChange(e) {
-    console.log(e.detail.value)
     this.setData({
       'userInfo.gender': e.detail.value
     })
@@ -39,7 +38,6 @@ Page({
     const label = e.currentTarget.dataset.label;
     const value = e.detail.value;
     this.data.userInfo[label] = value;
-    console.log(this.data.userInfo)
   },
   submitRegister() {
     const that = this;
@@ -138,7 +136,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
     this.setData({
       type: options.type,
       userInfo: app.globalData.userInfo

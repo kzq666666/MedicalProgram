@@ -27,7 +27,6 @@ Page({
         this.setData({
             'userInfo.gender' : e.detail.value
         })
-        console.log(this.data.userInfo.gender)
     },
     changeDoctor(e){
         this.setData({
@@ -36,8 +35,6 @@ Page({
         })
     },
     submitEditInfo(){
-        const that = this;
-        console.log(that)
         if(this.data.type == '主治医生'){
             editDoctorInfo(this.data.userInfo).then((res)=>{
                 wx.showToast({
@@ -95,7 +92,6 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        console.log(options)
         if(options.isDocto == 'true'){
             this.setData({
                 type: '主治医生'

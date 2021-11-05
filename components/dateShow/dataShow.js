@@ -8,6 +8,10 @@ Component({
     patientId:{
       type:  String,
       
+    },
+    isFresh:{
+      type: Boolean,
+      value: true
     }
   },
 
@@ -34,18 +38,24 @@ Component({
   },
   pageLifetimes:{
     show(){
-      this.triggerEvent('getId');
-      const patientId = this.data.patientId;
-      getPatientAllPicDate({
-        patientId: patientId
-      }).then(res=>{
-        this.setData({
-          date: res.data.sort(),
-          isShow: new Array(res.data.length).fill(false),
-          isFirstShow: new Array(res.data.length).fill(true)
-        })
-      })
-    }
+      this.triggerEvent('getId')
+      if(this.data.isFresh){
+        const patientId = this.data.patientId;
+        if(this.data.isFresh){
+          getPatientAllPicDate({
+            patientId: patientId
+          }).then(res=>{
+            this.setData({
+              date: res.data.sort().reverse(),
+              isShow: new Array(res.data.length).fill(false),
+              isFirstShow: new Array(res.data.length).fill(true),
+              isFresh: false
+            })
+          })
+        }
+        }
+      }
+      
   },
   
   /**
@@ -66,7 +76,6 @@ Component({
             [`imgList.${date}`]: res.data.pictureUrls,
             [`isFirstShow[${index}]`]: false
           })
-          console.log(this.data.imgList)
         })
       }
       this.setData({
@@ -78,7 +87,6 @@ Component({
       const imgList = e.currentTarget.dataset.list.map(e=>{
         return `${this.data.domain}/${e}` 
       })
-      console.log(imgList)
       const that = this;
       wx.previewImage({
         urls: imgList,

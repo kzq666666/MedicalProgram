@@ -21,7 +21,6 @@ Page({
     })
   },
   showImg(e) {
-    console.log(e.detail)
     const imgUrl = e.currentTarget.dataset.url;
     const that = this;
     wx.previewImage({
@@ -32,7 +31,6 @@ Page({
   getImage: function () {
     let that = this;
     const len = 10 - that.data.tempImg.length;
-    console.log(len, that.data.firstUpLoad)
     if (len > 0 || that.data.firstUpLoad) {
       wx.chooseImage({
         count: len, // 默认9
@@ -40,7 +38,6 @@ Page({
         sourceType: ['album'], // 可以指定来源是相册还是相机，默认二者都有
         success: function (res) {
           // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-          console.log(res)
           that.setData({
             tempImg: [...that.data.tempImg, ...res.tempFilePaths],
             tempFiles: [...that.data.tempFiles, ...res.tempFiles]
@@ -93,10 +90,11 @@ Page({
           },
           success: function (res) {
             //上传成功
-            console.log(res.data)
+            // let data = JSON.parse(res.data)
+            // console.log(data)
           },
           fail: function (res) {
-            console.log(res)
+            // console.log(res)
           },
         })
         if(i==that.data.tempImg.length-1){
@@ -110,11 +108,17 @@ Page({
           duration: 1000,
           mask: true,
           success: ()=>{
+            let tempPage = getCurrentPages()
+            let prevPage = tempPage[tempPage.length - 2];
+            prevPage.setData({
+              isFresh: true
+            }) 
             setTimeout(() => {
               wx.navigateBack({
                 delta: 0,
               })
             }, 1000);
+          
           }
         })
       }
