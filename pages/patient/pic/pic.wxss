@@ -2,6 +2,7 @@
 .Box{
   height: 80vh;
   padding: 50rpx;
+  margin-bottom: 100rpx;
 }
 
 

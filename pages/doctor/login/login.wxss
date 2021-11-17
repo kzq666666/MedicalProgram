@@ -1,0 +1,59 @@
+/* pages/doctor/login/login.wxss */
+
+.flex-center{
+}
+.doctorLoginPage{
+  height: 200rpx;
+}
+.flex-item{
+  flex: 1 0 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.loginWrap{
+  flex: 1 0 60%;
+  border: 1px solid rgb(216, 222, 228);
+  margin: 30rpx 0;
+  box-shadow: 0 0 1px gray;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 50rpx;
+  border-radius: 12rpx;
+
+}
+
+.loginWrapItem{
+  flex: 1 0 100%;
+  text-align: left;
+}
+
+
+.marginBt{
+  margin-bottom: 30rpx;
+  
+}
+
+.loginWrap input{
+  padding: 20rpx;
+  border: 1px solid rgb(216, 222, 228);
+  background-color: #fff;
+  border-radius: 12rpx;
+  margin: 20rpx 0;
+}
+
+.loginWrap text{
+  margin-left: 20rpx;
+}
+.pwd{
+  position: relative;
+}
+.isShowIcon{
+  position: absolute;
+  right: 30rpx;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+}

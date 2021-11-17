@@ -1,0 +1,29 @@
+<!--pages/doctor/login/login.wxml-->
+
+<view class="wrapper flex-center">
+  <view class="flex-item">
+    <image src="{{src}}" class="doctorLoginPage" mode="aspectFit"></image>
+
+  </view>
+  <view class="flex-item loginWrap">
+    <view class="loginWrapItem">
+      <text class="marginBt">医生工号</text>
+      <input type="text" model:value="{{jobNumber}}"></input>
+    </view>
+    <view class="loginWrapItem marginBt">
+      <text class="marginBt">密码</text>
+      <input type="{{pwdType}}" class="pwd" model:value="{{password}}">
+        <view bindtap="changePwdShow" class="isShowIcon">
+          <mp-icon icon="eyes-on" color="black" size="{{25}}" wx:if="{{!pwdShow}}"></mp-icon>
+          <mp-icon icon="eyes-off" color="black" size="{{25}}" wx:else></mp-icon>
+        </view>
+      </input>
+     
+    </view>
+    <view class="btnList loginWrapItem">
+      <button type="primary" class="marginBt" bindtap="doctorLogin">登录</button>
+      <button bindtap="goToRegister">注册</button>
+    </view>
+  </view>
+
+</view>

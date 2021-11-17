@@ -1,13 +1,15 @@
 {
   "pages": [
-    "pages/patient/pic/pic",
-    "pages/patient/uploadPic/uploadPic",
+    "pages/doctor/login/login",
+    "pages/homePage/homePage",
+    "pages/register/register",
+    "pages/patient/personalInfo/personalInfo",
     "pages/patient/QR/QR",
     "pages/patient/uploadQR/uploadQR",
-    "pages/homePage/homePage",
+    "pages/patient/pic/pic",
+    "pages/patient/uploadPic/uploadPic",
     "pages/logs/logs",
     "pages/doctor/index/index",
-    "pages/register/register",
     "pages/doctor/wound/wound",
     "pages/doctor/paientManage/paientManage",
     "pages/doctor/question/newPic/newPic",
@@ -17,7 +19,6 @@
     "pages/doctor/question/index/index",
     "pages/info/info",
     "pages/patient/commentDoctor/commentDoctor",
-    "pages/patient/personalInfo/personalInfo",
     "pages/patient/myMsg/myMsg"
   ],
   "window": {

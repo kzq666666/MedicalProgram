@@ -1,11 +1,12 @@
 // pages/patient/pic/pic.js
+import {getAllQuestion, getAllRecord} from '../../../service/QR/index'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    record: []
   },
 
   /**
@@ -31,9 +32,30 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    const patientId = wx.getStorageSync('userInfo').id;
+    getAllRecord({
+      patientId: patientId,
+      pageSize: 1000000
+    }).then(res=>{
+      this.setData({
+        'record': res.data.content.sort((a,b)=>{
+          if(a.date>b.date){
+            return -1
+          }else{
+            return 1;
+          }
+        })
+      })
+    })
   },
-
+  showRecord(e){
+    const isShowRecord = true
+    const index = e.currentTarget.dataset.index;
+    const qr = JSON.stringify(this.data.record[index])
+    wx.navigateTo({
+      url: `/pages/patient/uploadQR/uploadQR?isShowRecord=${isShowRecord}&qr=${qr}`,
+    })
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */

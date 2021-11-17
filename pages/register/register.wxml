@@ -6,17 +6,10 @@
       <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
     </view>
     <view class="formItem">
-      <text class="label">姓名</text>
-      <input type="text" class="input" value="{{userInfo.nickName}}" bindinput="valueChange" data-label="nickName"></input>
+      <text class="label editable">姓名</text>
+      <input type="text" class="input" value="{{userInfo.nickName}}" bindinput="valueChange" data-label="name"></input>
     </view>
-    <view class="formItem">
-      <text class="label">性别</text>
-      <picker bindchange="bindPickerChange" value="{{userInfo.gender}}" range="{{genderArray}}">
-        <view class="picker">
-          {{genderArray[userInfo.gender]}}
-        </view>
-      </picker>
-    </view>
+   
     <block wx:if="{{type=='患者'}}">
       <view class="formItem">
         <text class="label">患者病号</text>
@@ -32,7 +25,32 @@
             </picker>
       </view>
     </block>
-
+    <block wx:else>
+      <view class="formItem">
+        <text class="label editable">医生工号</text>
+        <input type="text" class="input" value="{{userInfo.patientNumber}}" bindinput="valueChange" data-label="jobNumber" placeholder="登录账号"></input>
+      </view>
+      <view class="formItem">
+        <text class="label editable">登录密码</text>
+        <input type="{{pwdType}}" class="input inputPwd" value="{{userInfo.patientNumber}}" bindinput="valueChange" data-label="password" placeholder="请输入密码"></input>
+        <view bindtap="changePwdShow" class="pwd">
+          <mp-icon icon="eyes-on" color="black" size="{{25}}" wx:if="{{!pwdShow}}"></mp-icon>
+          <mp-icon icon="eyes-off" color="black" size="{{25}}" wx:else></mp-icon>
+        </view>
+      </view>
+      <view class="formItem">
+        <text class="label editable importLabel">注册码</text>
+        <input type="text" class="input" value="{{userInfo.patientNumber}}" bindinput="valueChange" data-label="registerCode" placeholder="唯一注册码"></input>
+      </view>
+    </block>
+    <view class="formItem">
+      <text class="label editable">性别</text>
+      <picker bindchange="bindPickerChange" value="{{userInfo.gender}}" range="{{genderArray}}" class="flexRight">
+        <view class="picker">
+          {{genderArray[userInfo.gender]}}
+        </view>
+      </picker>
+    </view>
     <view class="formItem">
       <text class="label">类型</text>
       <input type="text" class="input" value="{{type}}" disabled></input>
@@ -40,6 +58,4 @@
 
     <button type="primary" bindtap="submitRegister">注册</button>
   </form>
-
-
 </view>

@@ -3,9 +3,9 @@ import request from '../../utils/request'
 
 // Doctor
 // 注册
-export const registerDoctor = (params = params?params:{})=>{
+export const registerDoctor = (params = params?params:{}, registerCode)=>{
     return request({
-        url: '/api/doctors',
+        url: '/api/doctors?registerCode=' +  registerCode,
         method: 'POST',
         data: params
     })

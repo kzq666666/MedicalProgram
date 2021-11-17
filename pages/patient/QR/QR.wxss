@@ -1,1 +1,27 @@
 /* pages/patient/QR/QR.wxss */
+.Box{
+  display: flex;
+  padding: 30rpx;
+  flex-wrap: wrap;
+  margin-bottom: 100rpx;
+}
+
+.date{
+  width: 100%;
+  flex: 1 0 100%;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30rpx;
+}
+.dateText{
+  flex: 1 0 50%;
+  padding-left: 30rpx;
+}
+.basicBt{
+  /* flex: 1 0 10%; */
+  width: 170rpx !important;
+  margin-left:  0 !important;
+  margin-right: 0 !important;
+}

@@ -4,6 +4,7 @@
   padding: 50rpx;
   display: flex;
   flex-wrap: wrap;
+  margin-bottom: 100rpx;
 }
 .flex-item{
   display: flex;
@@ -12,7 +13,9 @@
   align-items: center;
   flex-wrap: wrap;
 }
-
+.marginBottom{
+  margin-top: 30rpx;
+}
 .flex-left{
   flex: 1 0 30%;
   text-align: left;
@@ -34,4 +37,16 @@
   width: 150rpx;
   height: 150rpx;
   margin: 3rpx;
+}
+
+.questionList{
+  margin-top: 30rpx;
+}
+.title{
+  padding-left: 20rpx;
+}
+
+.blockView{
+  display: block;
+  margin-top: 20rpx;
 }

@@ -1,4 +1,5 @@
 // pages/patient/uploadPic/uploadPic.js
+import {getAllQuestion, uploadQuesionRecord} from '../../../service/QR/index'
 Page({
 
   /**
@@ -7,84 +8,75 @@ Page({
   data: {
     date:"2016-09-01",
     curDate: "",
-    tempImg: [],
-    firstUpLoad: true
+    tempImg: [], 
+    firstUpLoad: true,
+    questionList: [],
+    isDisabled: false,
+    title: "上传问卷"
   },
   bindDateChange(e){
     this.setData({
       date: e.detail.value
     })
   },
-  showImg(e){
-    const imgUrl = e.currentTarget.dataset.url;
-    const that = this;
-    wx.previewImage({
-      urls: that.data.tempImg,
-      current: imgUrl,
-    })
-  },
-  getImage: function () {
-    let that = this;
-    const len = 10 - that.data.tempImg.length;
-    if(len > 0  || that.data.firstUpLoad){
-      wx.chooseImage({
-        count: len, // 默认9
-        sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-        sourceType: ['album'], // 可以指定来源是相册还是相机，默认二者都有
-        success: function (res) {
-          // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-          that.setData({
-            tempImg: [...that.data.tempImg, ...res.tempFilePaths]
-          })
-          if(that.data.firstUpLoad){
-            that.data.firstUpLoad = false;
-          }
-        }
-      })
-    }else if(len == 0){
-      wx.showToast({
-        title: '最多10张',
-        icon: 'error',
-        duration: 1000,
-        mask:true
-    })
-    }
-   
-  },
-    takePhoto: function () {
-    wx.chooseImage({
-      count: 1, // 默认9
-      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-      sourceType: ['camera'], // 可以指定来源是相册还是相机，默认二者都有
-      success: function (res) {
-        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-        var tempFilePaths = res.tempFilePaths
-
-      }
+  radioChange(e){
+    const selectedIndex = e.detail.value;
+    const questionIndex = e.currentTarget.dataset.index;
+    console.log(selectedIndex, questionIndex)
+    this.setData({
+      [`questionList[${questionIndex}].selectedIndex`]: Number(selectedIndex)
     })
   },
   commitUpload(){
-    
+    uploadQuesionRecord({
+      patient: wx.getStorageSync('userInfo'),
+      date: this.data.date,
+      questions: this.data.questionList
+    }).then(res=>{
+      wx.navigateBack({
+        delta: 0,
+      })
+    })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let curDate = new Date;
-    let year = curDate.getFullYear();
-    let month = curDate.getMonth() + 1;
-    let date = curDate.getDate();
-    let fill = (e) =>{
-      if(e<10){
-        return '0' + e;
-      }else{
-        return e;
+    if(JSON.stringify(options) !== '{}'){
+      // const isShowRecord = JSON.parse(options.isShowRecord);
+      const qr = JSON.parse(options.qr)
+      this.setData({
+        isDisabled: true,
+        date: qr.date,
+        questionList: qr.questions,
+        title:  qr.date
+      })
+
+    }else{
+      let curDate = new Date;
+      let year = curDate.getFullYear();
+      let month = curDate.getMonth() + 1;
+      let date = curDate.getDate();
+      let fill = (e) =>{
+        if(e<10){
+          return '0' + e;
+        }else{
+          return e;
+        }
       }
+      let dateFill = `${year}-${month}-${fill(date)}`
+      getAllQuestion().then(res=>{
+        this.setData({
+          date: dateFill,
+          curDate: dateFill,
+          questionList: res.data
+        })
+      })
+      
     }
-    let res = `${year}-${month}-${fill(date)}`
-    this.setData({
-      date: res,
-      curDate: res
+    // console.log(isShowRecord)
+    wx.setNavigationBarTitle({
+      title: this.data.title//页面标题为路由参数
     })
   },
 

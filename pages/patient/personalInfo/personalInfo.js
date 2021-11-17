@@ -18,40 +18,40 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    const userInfo = wx.getStorageSync('userInfo')
     this.setData({
-      userInfo: app.globalData.userInfo,
       personalInfoItem: [
         {
           name: '姓名',
-          value: this.data.userInfo.nickName
+          value: userInfo.nickName
         },
         {
           name: '性别',
-          value: this.data.userInfo.gender==1?'男':'女'
+          value: userInfo.gender==0?'男':'女'
         },
         {
           name: '病号',
-          value: this.data.userInfo.patientNumber
+          value: userInfo.patientNumber
         },
         {
           name: '诊断',
-          value: this.data.userInfo.diagnosis
+          value: userInfo.diagnosis || '无'
         },
         {
           name: '出生日期',
-          value: this.data.userInfo.birth
+          value: userInfo.birth || '无'
         },
         {
           name: '年龄',
-          value: "123"
+          value: "无"
         },
         {
           name: '住址',
-          value: ''
+          value: '无'
         },
         {
           name: '主管医生',
-          value: "测试"
+          value: userInfo.doctor.name
         }
         
       ]

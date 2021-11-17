@@ -1,6 +1,9 @@
 <!--pages/patient/pic/pic.wxml-->
 
 <view class="Box">
-  <dataShow></dataShow>
+  <view class="date" wx:for="{{record}}" wx:key="key">
+    <text class="dateText">{{item.date}}</text>
+    <button class="basicBt" bindtap="showRecord" data-index="{{index}}">查看</button>
+  </view>
 </view>
 <button class="upload" type="primary" bindtap="goToNext">上传</button>

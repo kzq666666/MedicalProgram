@@ -2,5 +2,5 @@
   "usingComponents": {
     "mp-icon": "/components/icon/icon"
   },
-  "navigationBarTitleText": "注册"
+  "navigationBarTitleText": "医生登录"
 }

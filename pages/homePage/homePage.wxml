@@ -2,7 +2,7 @@
   <logoPage></logoPage>
   <view class="loginPage" wx:if="{{!isLogin}}">
     <view>
-      <button class='firstBtn' type='primary' lang="zh_CN" bindtap="bindGetUserInfo" data-type="ROLE_DOCTOR">
+      <button class='firstBtn' type='primary' lang="zh_CN" bindtap="goToDoctorLoginPage" data-type="ROLE_DOCTOR">
         医生登录
       </button>
       <button bindtap="bindGetUserInfo" data-type="ROLE_PATIENT">

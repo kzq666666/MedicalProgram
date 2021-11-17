@@ -43,9 +43,14 @@ Page({
       },
       {
         "name": "我的问卷",
-        "targetUrl": "/pages/"
+        "targetUrl": "/pages/patient/QR/QR"
       }
     ]
+  },
+  goToDoctorLoginPage(){
+    wx.navigateTo({
+      url: '/pages/doctor/login/login',
+    })
   },
   bindGetUserInfo(e){
     const type = e.currentTarget.dataset.type;
@@ -59,7 +64,6 @@ Page({
         params["rawData"] = res.rawData
         params["signature"] = res.signature
         app.globalData.userInfo = res.userInfo
-
         wx.login({
           success(res){
             if(res.code){
@@ -70,7 +74,6 @@ Page({
                 data: params,
                 success(res){
                   that.checkIsLogin(res, type)
-                 
                 }
               })
             }
@@ -85,6 +88,8 @@ Page({
     const tipRole = currentRoleType == 'ROLE_PATIENT' ? '患者' : '医生';
     const role = res.data.role;
     const that = this;
+    wx.setStorageSync('token', res.data.token);
+    wx.setStorageSync('openId', res.data.openid)
     if(!role || role!=currentRoleType){
       wx.showModal({
         title: '提示',
@@ -107,9 +112,7 @@ Page({
         }
       })
     }else{
-      wx.setStorageSync('token', res.data.token);
-      wx.setStorageSync('openId', res.data.openid)
-      console.log(currentRoleType)
+      
       if(currentRoleType == 'ROLE_PATIENT'){
         getPatientsInfo({
           openid: res.data.openid

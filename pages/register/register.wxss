@@ -12,17 +12,40 @@
 }
 
 .label{
-  flex: 1 0 20%;
+  flex: 1 0 50%;
 }
 
 .input{
-  flex: 1 0 20%;
-  text-align: right;
+  flex: 1 0 25%;
+  text-align: left;
 }
-
+.input:focus{
+  border: 2px solid black;
+}
 .userinfo-avatar{
   overflow: hidden;
   flex-basis: 128rpx;
   height: 128rpx;
   border-radius: 50%;
+}
+
+.editable{
+  font-weight: bold;
+}
+.importLabel::before{
+  content: "*";
+  margin-right: 10rpx;
+  color: red;
+}
+
+.inputPwd{
+  flex: 1 0 15%;
+}
+.pwd{
+  flex: 1 0 0%;
+  text-align: right;
+}
+
+.flexRight{
+  flex: 1 0 25%;
 }
