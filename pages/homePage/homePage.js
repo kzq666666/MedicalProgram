@@ -90,7 +90,7 @@ Page({
     const that = this;
     wx.setStorageSync('token', res.data.token);
     wx.setStorageSync('openId', res.data.openid)
-    if(!role || role!=currentRoleType){
+    if(true){
       wx.showModal({
         title: '提示',
         content: `您还未注册为${tipRole}，请点击注册按钮进行注册`,
@@ -100,9 +100,11 @@ Page({
             wx.navigateTo({
               url: `/pages/register/register?type=${tipRole}`,
               events: {
-                registerSuccess(){
+                registerSuccess(data){
+                  console.log(data)
                   that.setData({
-                    isLogin: true
+                    isLogin: true,
+                    userInfo: data
                   })
                 }
               }
@@ -112,7 +114,6 @@ Page({
         }
       })
     }else{
-      
       if(currentRoleType == 'ROLE_PATIENT'){
         getPatientsInfo({
           openid: res.data.openid
@@ -126,7 +127,6 @@ Page({
           })
         })
       }
-     
     }
   },
 

@@ -29,7 +29,8 @@ Page({
     doctorName: [],
     mainDoctor: {},
     pwdShow: false,
-    pwdType: "password"
+    pwdType: "password",
+    registerCode: "Jnuzxwk8486"
   },
   changePwdShow() {
     if (!this.data.pwdShow) {
@@ -45,9 +46,22 @@ Page({
     }
 
   },
+  checkPaient() {
+    let flag = true;
+    if (!this.data.userInfo.patientNumber) {
+      wx.showModal({
+        cancelColor: 'cancelColor',
+        title: '提示',
+        content: '患者病号不能为空',
+        success: (res) => {}
+      })
+      flag = false;
+    }
+    return flag;
+  },
   checkDoctor() {
     let flag = false;
-    if (this.data.userInfo.registerCode !== "Jnuzxwk8486") {
+    if (this.data.userInfo.registerCode !== this.data.registerCode) {
       wx.showToast({
         title: '注册码错误',
         icon: 'error',
@@ -80,9 +94,9 @@ Page({
   submitRegister() {
     console.log(this.data.userInfo)
     let params = {
-      "openid": "123456",
+      "openid": "p3",
       "name": this.data.userInfo.name || this.data.userInfo.nickName,
-      "nickName": this.data.userInfo.nickName,
+      "nickName": this.data.userInfo.name || this.data.userInfo.nickName,
       "gender": this.data.userInfo.gender,
       "imageUrl": this.data.userInfo.avatarUrl
     };
@@ -90,106 +104,155 @@ Page({
       if (this.checkDoctor()) {
         params["jobNumber"] = this.data.userInfo.jobNumber;
         params["password"] = this.data.userInfo.password;
-        registerDoctor(params, this.data.userInfo.registerCode).then(res=>{
-          if(/2\d\d/.test(res.statusCode)){
+        registerDoctor(params, this.data.userInfo.registerCode).then(res => {
+          if (/2\d\d/.test(res.statusCode)) {
             wx.showToast({
               title: '注册成功',
               icon: 'success',
+              duration: 1000
+            })
+            const pages = getCurrentPages();
+            let prevPage = pages[pages.length - 2]
+            prevPage.setData({
+              jobNumber: params["jobNumber"],
+              password: params["password"],
+              openid: params["openid"]
+
+            })
+            wx.navigateBack({
+              delta: 0,
+            })
+          } else {
+            wx.showToast({
+              title: '注册失败',
+              icon: 'error',
               duration: 1000
             })
           }
         })
       }
     } else {
-
+      if (this.checkPaient()) {
+        params["patientNumber"] = this.data.userInfo.patientNumber
+        params["doctor"] = params["doctor"] = this.data.mainDoctor
+        registerPatient(params).then(res => {
+          if (/2\d\d/.test(res.statusCode)) {
+            wx.showToast({
+              title: '注册成功',
+              icon: 'success',
+              duration: 1000,
+              mask: true,
+              complete: () => {
+                const eventChannel = this.getOpenerEventChannel()
+                eventChannel.emit('registerSuccess', res.data)
+                wx.setStorageSync('userInfo', res.data)
+                setTimeout(
+                  () => {
+                    wx.navigateBack({
+                      delta: 1,
+                    })
+                  },
+                  1000
+                )
+              }
+            })
+          } else {
+            wx.showToast({
+              title: '注册失败',
+              icon: 'error',
+              duration: 1000,
+              mask: true,
+            })
+          }
+        })
+      }
     }
-    // if(this.data.userInfo)
-    // const that = this;
-    // let params = {
-    //   "openid": wx.getStorageSync('openId'),
-    //   "name": that.data.userInfo.nickName,
-    //   "nickName": that.data.userInfo.nickName,
-    //   "gender": that.data.userInfo.gender,
-    //   "imageUrl": that.data.userInfo.avatarUrl
-    // };
-    // if (that.data.type == '患者') {
-    //   if (!that.data.userInfo.patientNumber) {
-    //     wx.showModal({
-    //       cancelColor: 'cancelColor',
-    //       title: '提示',
-    //       content: '患者病号不能为空',
-    //       success: (res) => {
-
-    //       }
-    //     })
-    //   } else {
-    //     params["patientNumber"] = that.data.userInfo.patientNumber
-    //     params["doctor"] = that.data.mainDoctor
-    //     registerPatient(params).then(res => {
-    //       if (res.statusCode == 201) {
-    //         wx.showToast({
-    //           title: '注册成功',
-    //           icon: 'success',
-    //           duration: 1000,
-    //           mask: true,
-    //           complete: () => {
-    //             const eventChannel = that.getOpenerEventChannel()
-    //             eventChannel.emit('registerSuccess', res.data)
-    //             setTimeout(
-    //               () => {
-    //                 wx.navigateBack({
-    //                   delta: 1,
-    //                 })
-    //               },
-    //               1000
-    //             )
-    //           }
-    //         })
-    //       } else {
-    //         wx.showToast({
-    //           title: '注册失败',
-    //           icon: 'error',
-    //           duration: 1000,
-    //           mask: true,
-    //         })
-    //       }
-    //     })
-    //   }
-
-    // } else {
-    //   params["jobNumber"] = "test"
-    //   registerDoctor(params).then(res => {
-    //     if (res.statusCode == 201) {
-    //       wx.showToast({
-    //         title: '注册成功',
-    //         icon: 'success',
-    //         duration: 1000,
-    //         mask: true,
-    //         complete: () => {
-    //           const eventChannel = that.getOpenerEventChannel()
-    //           eventChannel.emit('registerSuccess', res.data)
-    //           setTimeout(
-    //             () => {
-    //               wx.navigateBack({
-    //                 delta: 1,
-    //               })
-    //             },
-    //             1000
-    //           )
-    //         }
-    //       })
-    //     } else {
-    //       wx.showToast({
-    //         title: '注册失败',
-    //         icon: 'error',
-    //         duration: 1000,
-    //         mask: true
-    //       })
-    //     }
-    //   })
-    // }
-
   },
+  // if(this.data.userInfo)
+  // const that = this;
+  // let params = {
+  //   "openid": wx.getStorageSync('openId'),
+  //   "name": that.data.userInfo.nickName,
+  //   "nickName": that.data.userInfo.nickName,
+  //   "gender": that.data.userInfo.gender,
+  //   "imageUrl": that.data.userInfo.avatarUrl
+  // };
+  // if (that.data.type == '患者') {
+  //   if (!that.data.userInfo.patientNumber) {
+  //     wx.showModal({
+  //       cancelColor: 'cancelColor',
+  //       title: '提示',
+  //       content: '患者病号不能为空',
+  //       success: (res) => {
+
+  //       }
+  //     })
+  //   } else {
+  //     params["patientNumber"] = that.data.userInfo.patientNumber
+  //     params["doctor"] = that.data.mainDoctor
+  //     registerPatient(params).then(res => {
+  //       if (res.statusCode == 201) {
+  //         wx.showToast({
+  //           title: '注册成功',
+  //           icon: 'success',
+  //           duration: 1000,
+  //           mask: true,
+  //           complete: () => {
+  //             const eventChannel = that.getOpenerEventChannel()
+  //             eventChannel.emit('registerSuccess', res.data)
+  //             setTimeout(
+  //               () => {
+  //                 wx.navigateBack({
+  //                   delta: 1,
+  //                 })
+  //               },
+  //               1000
+  //             )
+  //           }
+  //         })
+  //       } else {
+  //         wx.showToast({
+  //           title: '注册失败',
+  //           icon: 'error',
+  //           duration: 1000,
+  //           mask: true,
+  //         })
+  //       }
+  //     })
+  //   }
+
+  // } else {
+  //   params["jobNumber"] = "test"
+  //   registerDoctor(params).then(res => {
+  //     if (res.statusCode == 201) {
+  //       wx.showToast({
+  //         title: '注册成功',
+  //         icon: 'success',
+  //         duration: 1000,
+  //         mask: true,
+  //         complete: () => {
+  //           const eventChannel = that.getOpenerEventChannel()
+  //           eventChannel.emit('registerSuccess', res.data)
+  //           setTimeout(
+  //             () => {
+  //               wx.navigateBack({
+  //                 delta: 1,
+  //               })
+  //             },
+  //             1000
+  //           )
+  //         }
+  //       })
+  //     } else {
+  //       wx.showToast({
+  //         title: '注册失败',
+  //         icon: 'error',
+  //         duration: 1000,
+  //         mask: true
+  //       })
+  //     }
+  //   })
+  // }
   changeDoctor(e) {
     this.setData({
       index: e.detail.value,

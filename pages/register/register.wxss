@@ -24,7 +24,7 @@
 }
 .userinfo-avatar{
   overflow: hidden;
-  flex-basis: 128rpx;
+  width: 128rpx;
   height: 128rpx;
   border-radius: 50%;
 }

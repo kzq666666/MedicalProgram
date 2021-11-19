@@ -3,26 +3,32 @@
   <form>
     <view class="formItem">
       <text class="label">头像</text>
-      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <view class="input">
+        <image class="userinfo-avatar " src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      </view>
+
     </view>
     <view class="formItem">
       <text class="label editable">姓名</text>
       <input type="text" class="input" value="{{userInfo.nickName}}" bindinput="valueChange" data-label="name"></input>
     </view>
-   
+
     <block wx:if="{{type=='患者'}}">
       <view class="formItem">
-        <text class="label">患者病号</text>
+        <text class="label editable">患者病号</text>
         <input type="text" class="input" value="{{userInfo.patientNumber}}" bindinput="valueChange" data-label="patientNumber"></input>
       </view>
-      
+
       <view class="formItem">
-        <text class="label">主治医生</text>
-        <picker class="flexItemRight" bindchange="changeDoctor" value="{{index}}" range="{{doctorName}}">
-                <view class="picker">
-                    {{doctorName[index]}}
-                </view>
-            </picker>
+        <text class="label editable">主治医生</text>
+        <view class="input">
+          <picker class="flexItemRight" bindchange="changeDoctor" value="{{index}}" range="{{doctorName}}">
+            <view class="picker">
+              {{doctorName[index]}}
+            </view>
+          </picker>
+        </view>
+
       </view>
     </block>
     <block wx:else>

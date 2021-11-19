@@ -1,8 +1,8 @@
 {
   "pages": [
-    "pages/doctor/login/login",
     "pages/homePage/homePage",
     "pages/register/register",
+    "pages/doctor/login/login",
     "pages/patient/personalInfo/personalInfo",
     "pages/patient/QR/QR",
     "pages/patient/uploadQR/uploadQR",

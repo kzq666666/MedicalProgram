@@ -1,4 +1,5 @@
 // pages/doctor/login/login.js
+import {doctorLogin, getDoctorInfoByOpenId} from '../../../service/loginPage/index'
 const app = getApp()
 Page({
 
@@ -10,7 +11,8 @@ Page({
     pwdShow: false,
     pwdType: "password",
     jobNumber: "",
-    password: ""
+    password: "",
+    openid: "123456"
   },
   changePwdShow() {
     if (!this.data.pwdShow) {
@@ -31,7 +33,32 @@ Page({
       jobNumber: this.data.jobNumber,
       password: this.data.password
     }
-    console.log(params)
+    doctorLogin(params).then((res)=>{
+      if(res.statusCode == 200){
+        wx.setStorageSync('token', res.data)
+        getDoctorInfoByOpenId({
+          openid: this.data.openid
+        }).then(res=>{
+          wx.setStorageSync('userInfo', res.data);
+          wx.showToast({
+            title: '登录成功',
+            icon: 'success',
+            duration: 1000
+          })
+          const pages = getCurrentPages();
+            let prevPage =  pages[pages.length-2]
+            prevPage.setData({
+              isLogin: true,
+              userInfo: res.data,
+              isDoctor: true
+
+            })
+          wx.navigateBack({
+            delta: 0,
+          })
+        })
+      }
+    })
   },
   goToRegister() {
     const params = {};

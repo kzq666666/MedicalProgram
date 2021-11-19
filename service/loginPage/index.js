@@ -26,7 +26,21 @@ export const editDoctorInfo = (params)=>{
         data: params
     })
 }
-
+// 医生登录（工号密码）
+export const doctorLogin = (params)=>{
+    return request({
+        url: '/api/doctors/authenticate',
+        method: 'POST',
+        data: params
+    })
+}
+// 通过openid获取医生信息
+export const getDoctorInfoByOpenId = (params)=>{
+    return request({
+        url: `/api/doctors/openid/${params.openid}`,
+        method: 'GET'
+    })
+}
 // Patient
 // 注册
 export const registerPatient = (params = params?params:{})=>{
