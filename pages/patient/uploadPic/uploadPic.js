@@ -1,6 +1,7 @@
 // pages/patient/uploadPic/uploadPic.js
 import {
   uploadNewPic,
+  putPic
 } from '../../../service/PhotoRecord/index'
 Page({
 
@@ -34,12 +35,14 @@ Page({
     if (len > 0 || that.data.firstUpLoad) {
       wx.chooseImage({
         count: len, // 默认9
+        
         sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
         sourceType: ['album'], // 可以指定来源是相册还是相机，默认二者都有
         success: function (res) {
           // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
           that.setData({
             tempImg: [...that.data.tempImg, ...res.tempFilePaths],
+
             tempFiles: [...that.data.tempFiles, ...res.tempFiles]
           })
           if (that.data.firstUpLoad) {
@@ -57,7 +60,36 @@ Page({
     }
 
   },
+  putPhoto(id){
+    const that = this;
+    const token = 'Bearer' + ' ' + wx.getStorageSync('token');
 
+    wx.uploadFile({
+      //请求后台的路径
+      url: 'https://be.woundhealth.cn/api/photo-records',
+      //小程序本地的路径
+      filePath: that.data.tempImg[1],
+      header: {
+        "Authorization": token,
+        "Content-Type": "multipart/form-data"
+      },
+      //后台获取我们图片的key
+      name: 'pictures',
+      //额外的参数formData
+      formData: {
+        id: id,
+      },
+      success: function (res) {
+        console.log(res)
+        //上传成功
+        // let data = JSON.parse(res.data)
+        // console.log(data)
+      },
+      fail: function (res) {
+        // console.log(res)
+      },
+    })
+  },
   commitUpload() {
     if(!this.data.tempImg.length){
       wx.showToast({
@@ -70,12 +102,12 @@ Page({
       const token = 'Bearer' + ' ' + wx.getStorageSync('token');
       const that = this;
       let finished = false;
-      for(let i = 0;i<that.data.tempImg.length;i++){
+      // for(let i = 0;i<that.data.tempImg.length;i++){
         wx.uploadFile({
           //请求后台的路径
           url: 'https://be.woundhealth.cn/api/photo-records',
           //小程序本地的路径
-          filePath: that.data.tempImg[i],
+          filePath: that.data.tempImg[0],
           header: {
             "Authorization": token,
             "Content-Type": "multipart/form-data"
@@ -89,19 +121,23 @@ Page({
             readTag: "false"
           },
           success: function (res) {
-            console.log(res)
+            console.log(res, 11111)
+            that.putPhoto(res.data.id)
+
+            // console.log(res)
             //上传成功
             // let data = JSON.parse(res.data)
             // console.log(data)
           },
           fail: function (res) {
+            // this.data.putPhotot(res.data.id)
             // console.log(res)
           },
         })
-        if(i==that.data.tempImg.length-1){
-          finished = true;
-        }
-      }
+        // if(i==that.data.tempImg.length-1){
+        //   finished = true;
+        // }
+      // }
       if(finished){
         wx.showToast({
           title: '上传成功',

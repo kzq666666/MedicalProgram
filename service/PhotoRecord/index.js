@@ -8,6 +8,15 @@ export const uploadNewPic = (params={}, headers={})=>{
       data: params
   }, headers)
 }
+// 更新照片记录
+export const putPic = (params={}, headers={})=>{
+  return request({
+      url: '/api/photo-records',
+      method: 'PUT',
+      data: params
+  }, headers)
+}
+
 // 获取患者所有照片记录接口
 export const getPatientAllPic = (params={}, headers={})=>{
   return request({

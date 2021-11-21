@@ -1,13 +1,15 @@
 {
   "pages": [
     "pages/homePage/homePage",
+
+    "pages/patient/uploadPic/uploadPic",
+
+    "pages/patient/pic/pic",
     "pages/register/register",
     "pages/doctor/login/login",
     "pages/patient/personalInfo/personalInfo",
     "pages/patient/QR/QR",
     "pages/patient/uploadQR/uploadQR",
-    "pages/patient/pic/pic",
-    "pages/patient/uploadPic/uploadPic",
     "pages/logs/logs",
     "pages/doctor/index/index",
     "pages/doctor/wound/wound",
