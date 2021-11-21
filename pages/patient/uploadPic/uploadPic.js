@@ -89,6 +89,7 @@ Page({
             readTag: "false"
           },
           success: function (res) {
+            console.log(res)
             //上传成功
             // let data = JSON.parse(res.data)
             // console.log(data)
