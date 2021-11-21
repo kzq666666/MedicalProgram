@@ -30,7 +30,11 @@ Page({
     mainDoctor: {},
     pwdShow: false,
     pwdType: "password",
-    registerCode: "Jnuzxwk8486"
+    registerCode: "Jnuzxwk8486",
+    diagnosisIndex: 0,
+    diagnosis:["VASCULAR_DISEASE", "DIABETES", "TRAUMA", "PRESSURE_SORE", "OTHER"],
+    diagnosisName: ["血管疾病", "糖尿病", "外伤", "压疮", "其他"]
+
   },
   changePwdShow() {
     if (!this.data.pwdShow) {
@@ -258,6 +262,13 @@ Page({
       index: e.detail.value,
       mainDoctor: this.data.doctorList[e.detail.value]
     })
+  },
+  changeDiagnosis(e){
+    this.setData({
+      diagnosisIndex: e.detail.value,
+      ['userInfo.diagnosis']: this.data.diagnosis[e.detail.value]
+    })
+    console.log(this.data.userInfo.diagnosis)
   },
   /**
    * 生命周期函数--监听页面加载

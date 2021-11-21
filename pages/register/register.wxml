@@ -18,7 +18,16 @@
         <text class="label editable">患者病号</text>
         <input type="text" class="input" value="{{userInfo.patientNumber}}" bindinput="valueChange" data-label="patientNumber"></input>
       </view>
-
+      <view class="formItem">
+        <text class="label editable">创面类型</text>
+        <view class="input">
+          <picker class="flexItemRight" bindchange="changeDiagnosis" value="{{diagnosisIndex}}" range="{{diagnosisName}}" mode="selector">
+            <view class="picker">
+              {{diagnosisName[diagnosisIndex]}}
+            </view>
+          </picker>
+        </view>
+      </view>
       <view class="formItem">
         <text class="label editable">主治医生</text>
         <view class="input">

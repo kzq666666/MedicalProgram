@@ -1,5 +1,4 @@
 <!--pages/patient/pic/pic.wxml-->
-
 <view class="Box">
   <dataShow patientId="{{patientId}}" isFresh="{{isFresh}}" bind:getId="getPatientId"></dataShow>
 </view>
