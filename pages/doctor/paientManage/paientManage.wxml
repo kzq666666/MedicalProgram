@@ -6,9 +6,9 @@
     </input>
   </view>
   <view class="paientPage">
-    <view wx:for="{{allData}}}">
-      <text>{{item}}</text>
-      
+    <view wx:for="{{allData}}" class="paientWrap">
+      <image src="{{item.imageUrl}}" class="paientImage"></image>
+      <text class="paientName">{{item.name}}</text>
     </view>
   </view>
 </view>
