@@ -1,0 +1,112 @@
+.select-box {
+  position: relative;
+  width: 100%;
+  font-size: 30rpx;
+  text-align: center;
+}
+
+.select-current {
+  position: relative;
+  width: 100%;
+  padding: 0 12rpx;
+  line-height: 75rpx;
+  border-right: 1rpx solid black;
+  box-sizing: border-box;
+}
+
+
+.isFold {
+  position: absolute;
+  display: block;
+  left: 15rpx;
+  top: 26rpx;
+  width: 0;
+  height: 0;
+  border: 10rpx solid transparent;
+  border-left: 10rpx solid #999;
+}
+.notFold{
+  position: absolute;
+  display: block;
+  left: 15rpx;
+  top: 30rpx;
+  width: 0;
+  height: 0;
+  border: 10rpx solid transparent;
+  border-top: 10rpx solid #999;
+}
+
+.current-name {
+  display: block;
+  height: 100%;
+  word-wrap: normal;
+  overflow: hidden;
+}
+
+.option-list {
+  position: absolute;
+  left: 0;
+  top: 76rpx;
+  width: 100%;
+  padding: 12rpx 20rpx 10rpx 20rpx;
+  border-radius: 6rpx;
+  box-sizing: border-box;
+  z-index: 99;
+  box-shadow: 0rpx 0rpx 1rpx 1rpx rgba(0, 0, 0, 0.2) inset;
+  background-color: #fff;
+}
+
+.option {
+  display: block;
+  width: 100%;
+  line-height: 70rpx;
+  border-bottom: 1rpx solid #eee;
+}
+
+.option:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.hasChildren{
+  position: relative;
+}
+/* .hasChildren::after{
+  position: absolute;
+  display: block;
+  left: 0;
+  top: 25rpx;
+  content: '';
+  width: 0;
+  height: 0;
+  border: 10rpx solid transparent;
+  border-left: 10rpx solid #999;
+} */
+.isFoldFather, .notFoldFather{
+  position: relative;
+}
+.hasChildren.notFoldFather::after{
+  position: absolute;
+  display: block;
+  left: 0;
+  top: 25rpx;
+  content: '';
+  width: 0;
+  height: 0;
+  border: 10rpx solid transparent;
+  border-left: 10rpx solid #999;
+}
+.hasChildren.isFoldFather::after{
+  position: absolute;
+  display: block;
+  left: -10rpx;
+  top: 30rpx;
+  content: '';
+  width: 0;
+  height: 0;
+  border: 10rpx solid transparent;
+  border-top: 10rpx solid #999;
+}
+.isChild{
+  /* margin-left: 16rpx; */
+}

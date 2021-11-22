@@ -1,2 +1,84 @@
 /* pages/doctor/paientManage/paientManage.wxss */
 
+.searchBox{
+  display: flex;
+  /* justify-content: center; */
+  /* align-items: center; */
+  background-color: white;
+  border: 1px solid black;
+  height: 75rpx;
+  border-radius: 12rpx;
+}
+
+.searchText{
+  /* border: 1px solid black; */
+  width: 200rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.searchText::after{
+  display: block;
+  position: absolute;
+  content: "|";
+  right: 0;
+  color: #ddd;
+  line-height: 75rpx;
+}
+.searchInput{
+  padding: 15rpx;
+  /* border: 1px solid black; */
+}
+
+.arrow-down{
+  display: inline-block;
+  transform: rotate(90deg);
+  margin: 10rpx;
+}
+
+.searchList{
+  display: block;
+  position: absolute;
+  width: 200rpx;
+  top: 76rpx;
+}
+.searchItem{
+  width: 180rpx;
+  height: 75rpx;
+  position: absolute;
+  display: flex;
+  background-color: white;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid #ddd;
+  left: 12rpx;
+}
+
+.defaultValue:hover + .searchList{
+    display: block;
+}
+
+.searchItem:hover{
+  color: red;
+}
+
+#select{
+  width: 200rpx;
+}
+
+.searchInput{
+  position: relative;
+  padding-left: 55rpx;
+}
+.searchIcon{
+  position: absolute;
+  left: 5rpx;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.paientPage{
+  width: 100%;
+  height: 500rpx;
+}

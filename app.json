@@ -1,6 +1,8 @@
 {
   "pages": [
+    "pages/doctor/paientManage/paientManage",
     "pages/homePage/homePage",
+
 
     "pages/patient/uploadPic/uploadPic",
 
@@ -13,7 +15,6 @@
     "pages/logs/logs",
     "pages/doctor/index/index",
     "pages/doctor/wound/wound",
-    "pages/doctor/paientManage/paientManage",
     "pages/doctor/question/newPic/newPic",
     "pages/doctor/question/newQuot/newQuot",
     "pages/doctor/question/picInfo/picInfo",

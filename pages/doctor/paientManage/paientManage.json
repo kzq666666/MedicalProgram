@@ -1,4 +1,7 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "mp-icon": "/components/icon/icon",
+    "select": "/components/select/select"
+  },
   "navigationBarTitleText": "患者管理"
 }

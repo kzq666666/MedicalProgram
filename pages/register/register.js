@@ -98,7 +98,7 @@ Page({
   submitRegister() {
     console.log(this.data.userInfo)
     let params = {
-      "openid": "p3",
+      "openid": Math.random() + '1',
       "name": this.data.userInfo.name || this.data.userInfo.nickName,
       "nickName": this.data.userInfo.name || this.data.userInfo.nickName,
       "gender": this.data.userInfo.gender,
