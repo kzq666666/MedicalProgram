@@ -64,6 +64,12 @@ Page({
     ],
     allData: ""
   },
+  goToInfoPage(e){
+    const info = JSON.stringify(e.target.dataset.info)
+    wx.navigateTo({
+      url: `/pages/info/info?userInfo=${info}`,
+    })
+  },
   changeValue(e){
     if(!e.detail.children){
       this.setData({

@@ -2,14 +2,14 @@
 <view class="flexBox">
     <view class="flexItem height200">
         <text class="flexItemLeft">头像</text>
-        <image class="userinfo-avatar flexItemRight" src="{{userInfo.imageUrl}}" mode="cover"></image>
+        <image class="userinfo-avatar  " src="{{userInfo.imageUrl}}" mode="cover"></image>
     </view>
     <view class="flexItem">
-        <text class="flexItemLeft">姓名</text>
-        <input type="text" value="{{userInfo.nickName}}" class="inputClass flexItemRight" bindinput="bindinputVal"></input>
+        <text class="flexItemLeft editable">姓名</text>
+        <input type="text" value="{{userInfo.name}}" class="inputClass flexItemRight" bindinput="bindinputVal"></input>
     </view>
     <view class="flexItem">
-        <text class="flexItemLeft">性别</text>
+        <text class="flexItemLeft editable">性别</text>
         <picker bindchange="bindPickerChange" class="flexItemRight" value="{{userInfo.gender}}" range="{{genderArray}}">
             <view class="picker">
                 {{genderArray[userInfo.gender]}}
@@ -21,14 +21,31 @@
         <input type="text" value="{{type}}" class="inputClass flexItemRight" bindinput="bindinputVal" disabled></input>
     </view>
     <block wx:if="{{type=='患者'}}">
-
+        <view class="flexItem">
+            <text class="flexItemLeft">病历号</text>
+            <input type="text" value="{{userInfo.patientNumber}}" class="inputClass flexItemRight" bindinput="bindinputVal" disabled></input>
+        </view>
         <view class="flexItem">
             <text class="flexItemLeft">主治医生</text>
-            <picker class="flexItemRight" bindchange="changeDoctor" value="{{index}}" range="{{doctorName}}">
+            <text class="flexItemRight">{{userInfo.doctor.name}}</text>
+            <!-- <picker class="flexItemRight" bindchange="changeDoctor" value="{{index}}" range="{{doctorName}}">
                 <view class="picker">
                     {{doctorName[index]}}
                 </view>
-            </picker>
+            </picker> -->
+        </view>
+        <view class="flexItem">
+            <text class="flexItemLeft">主治医生</text>
+            <text class="flexItemRight">{{userInfo.doctor.name}}</text>
+            <!-- <picker class="flexItemRight" bindchange="changeDoctor" value="{{index}}" range="{{doctorName}}">
+                <view class="picker">
+                    {{doctorName[index]}}
+                </view>
+            </picker> -->
+        </view>
+        <view class="flexItem">
+            <text class="flexItemLeft">随访状态</text>
+            <input type="text" value="{{userInfo.status == 0 ? '正在随访' : '随访结束'}}" class="inputClass flexItemRight" bindinput="bindinputVal" disabled></input>
         </view>
     </block>
 

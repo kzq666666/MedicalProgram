@@ -87,9 +87,11 @@
 .paientWrap{
   display: flex;
   width: 100%;
-  border-bottom: 1px solid #424242;
-  margin-top: 10rpx;
+  border-bottom: 1px solid #999;
+  margin-top: 15rpx;
   align-items: center;
+  position: relative;
+
 }
 
 .paientImage{
@@ -100,4 +102,25 @@
 .paientName{
   margin-left: 50rpx;
   /* line-height: 100rpx; */
+}
+
+.paientWrap::after{
+  position: absolute;
+  right: 0;
+  width: 0;
+  height: 0;
+  content: "";
+  display: block;
+  border: 7px solid transparent;
+  border-left: 7px solid #999;
+
+  /* position: absolute;
+  display: block;
+  left: 0;
+  top: 25rpx;
+  content: '';
+  width: 0;
+  height: 0;
+  border: 10rpx solid transparent;
+  border-left: 10rpx solid #999; */
 }

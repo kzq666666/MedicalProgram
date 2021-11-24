@@ -6,7 +6,7 @@
     </input>
   </view>
   <view class="paientPage">
-    <view wx:for="{{allData}}" class="paientWrap">
+    <view wx:for="{{allData}}" class="paientWrap" bindtap="goToInfoPage" data-info="{{item}}">
       <image src="{{item.imageUrl}}" class="paientImage"></image>
       <text class="paientName">{{item.name}}</text>
     </view>

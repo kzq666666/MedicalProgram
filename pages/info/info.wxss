@@ -8,11 +8,10 @@
     justify-content: space-between;
     height: 100rpx;
     border-top: 1px solid #ddd;
-    color: red;
 }
 
 .flexItemLeft{
-    flex: 1 0 20%;
+    flex: 1 0 60%;
     height: 100rpx;
     line-height: 100rpx;
     padding-left: 50rpx;
@@ -24,18 +23,18 @@
 }
 
 .flexItemRight{
-    flex: 1 0 50%;
+    flex: 1 0 10%;
     height: 100rpx;
     line-height: 100rpx;
-    text-align: right;
-    padding-right: 50rpx;
+    text-align: left;
+    padding-right: 70rpx;
 }
 .userinfo-avatar{
     flex: none;
     width: 140rpx;
     height: 140rpx;
     border-radius: 50%;
-    margin-right: 50rpx;
+    margin-right: 95rpx;
     padding: 0;
 }
 .pageBottom{
@@ -56,4 +55,8 @@
 }
 .floatRight{
     float:right
+}
+
+.editable{
+    font-weight: bold;
 }

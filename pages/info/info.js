@@ -15,7 +15,8 @@ Page({
         doctorList: [],
         doctorName: [],
         mainDoctor: {},
-        index: 0
+        index: 0,
+        isDoctor: false,
     },
     bindinputVal(e){
         this.setData({
@@ -92,7 +93,9 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        if(options.isDocto == 'true'){
+        const userInfo = JSON.parse(options.userInfo)
+        console.log(userInfo)
+        if(options.isDoctor == 'true'){
             this.setData({
                 type: '主治医生'
             })
@@ -101,21 +104,21 @@ Page({
                 type: '患者'
             })
         }
-        if(this.data.type == '患者'){
-            let doctorName = []
-            getAllDoctors().then(res=>{
-                res.data.forEach((ele)=>{
-                    doctorName.push(ele.name)
-                })
-                this.setData({
-                    doctorList: res.data,
-                    doctorName: doctorName
-                })
-            })
-        }
+        // if(this.data.type == '患者'){
+        //     let doctorName = []
+        //     getAllDoctors().then(res=>{
+        //         res.data.forEach((ele)=>{
+        //             doctorName.push(ele.name)
+        //         })
+        //         this.setData({
+        //             doctorList: res.data,
+        //             doctorName: doctorName
+        //         })
+        //     })
+        // }
         this.setData(
             {
-                userInfo: app.globalData.userInfo
+                userInfo: userInfo
             }
         )
     },
