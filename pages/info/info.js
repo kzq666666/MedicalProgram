@@ -11,12 +11,28 @@ Page({
             
         },
         genderArray: ['男', '女'],
+        index: 0,
+        finalRiskLevel: ["低风险", "中风险", "高风险"],
+        finalRiskLevelIndex: 0,
+        statusArray: ["随访结束","正在随访"],
+        statusIndex: 0,
         type: '患者',
         doctorList: [],
         doctorName: [],
         mainDoctor: {},
-        index: 0,
         isDoctor: false,
+    },
+    changeRisk(e){
+        this.setData({
+            'userInfo.finalRiskLevel': e.detail.value,
+            'finalRiskLevelIndex': e.detail.value
+        })
+    },
+    changeStatus(e){
+        this.setData({
+            'userInfo.status': e.detail.value,
+            'statusIndex': e.detail.value
+        })
     },
     bindinputVal(e){
         this.setData({

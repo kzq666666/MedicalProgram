@@ -60,3 +60,18 @@
 .editable{
     font-weight: bold;
 }
+
+
+.flexItemRight button{
+    width: 180rpx !important;
+    font-size: inherit;
+    font-weight: inherit;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+}
+
+.flexItemRightBt{
+    position: relative;
+}

@@ -35,18 +35,28 @@
             </picker> -->
         </view>
         <view class="flexItem">
-            <text class="flexItemLeft">主治医生</text>
-            <text class="flexItemRight">{{userInfo.doctor.name}}</text>
-            <!-- <picker class="flexItemRight" bindchange="changeDoctor" value="{{index}}" range="{{doctorName}}">
+            <text class="flexItemLeft editable">危险等级</text>
+            <picker class="flexItemRight" bindchange="changeRisk" value="{{finalRiskLevelIndex}}" range="{{finalRiskLevel}}">
                 <view class="picker">
-                    {{doctorName[index]}}
+                    {{finalRiskLevel[finalRiskLevelIndex]}}
                 </view>
-            </picker> -->
+            </picker>
         </view>
         <view class="flexItem">
-            <text class="flexItemLeft">随访状态</text>
-            <input type="text" value="{{userInfo.status == 0 ? '正在随访' : '随访结束'}}" class="inputClass flexItemRight" bindinput="bindinputVal" disabled></input>
+            <text class="flexItemLeft editable">随访状态</text>
+            <picker bindchange="changeStatus" value="{{statusIndex}}" range="{{statusArray}}">
+                <view class="flexItemRight">
+                    {{statusArray[statusIndex]}}
+                </view>
+            </picker>
         </view>
+        <view  class="flexItem">
+            <text class="flexItemLeft">问卷记录</text>
+            <view class="flexItemRight flexItemRightBt">
+                <button>查看</button>
+            </view>
+        </view>
+        
     </block>
 
 </view>
