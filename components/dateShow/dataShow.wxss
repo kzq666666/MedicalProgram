@@ -33,3 +33,12 @@
 .wrapperItem{
   border-bottom: 1px solid #ddd;
 }
+
+.noData{
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  font-style: oblique;
+  color: #909399;
+  transform: translateX(-50%) translateY(-50%);   
+}

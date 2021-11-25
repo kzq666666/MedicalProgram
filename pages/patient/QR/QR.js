@@ -6,7 +6,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    record: []
+    record: [],
+    userInfo: {},
+    isUpload: true
   },
 
   /**
@@ -18,6 +20,24 @@ Page({
     })
   },
   onLoad: function (options) {
+    console.log(options)
+    if(options.userInfo){
+      this.setData({
+        userInfo: JSON.parse(options.userInfo),
+        isUpload: false,
+      })
+      wx.setNavigationBarTitle({
+        title: `问卷记录：${this.data.userInfo.name}`,
+      })
+    }else{
+      this.setData({
+        userInfo: wx.getStorageSync('userInfo'),
+        isUpload: true
+      })
+      wx.setNavigationBarTitle({
+        title: '我的问卷',
+      })
+    }
 
   },
 
@@ -25,18 +45,22 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    wx.showLoading({
+      title: '加载中',
+    })
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-    const patientId = wx.getStorageSync('userInfo').id;
+  onShow: function (options) {
+    
+    const patientId = this.data.userInfo.id;
     getAllRecord({
       patientId: patientId,
       pageSize: 1000000
     }).then(res=>{
+      wx.hideLoading();
       this.setData({
         'record': res.data.content.sort((a,b)=>{
           if(a.date>b.date){

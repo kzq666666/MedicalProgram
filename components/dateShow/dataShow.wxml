@@ -10,4 +10,7 @@
       
     </view>
   </view>
+  <view class="noData" wx:if="{{!date.length}}">
+    No Data
+  </view>
 </view>

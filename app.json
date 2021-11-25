@@ -1,10 +1,11 @@
 {
   "pages": [
-    "pages/doctor/paientManage/paientManage",
+    "pages/register/register",
+
     "pages/homePage/homePage",
+    "pages/doctor/paientManage/paientManage",
     "pages/patient/uploadPic/uploadPic",
     "pages/patient/pic/pic",
-    "pages/register/register",
     "pages/doctor/login/login",
     "pages/patient/personalInfo/personalInfo",
     "pages/patient/QR/QR",
@@ -19,7 +20,8 @@
     "pages/doctor/question/index/index",
     "pages/info/info",
     "pages/patient/commentDoctor/commentDoctor",
-    "pages/patient/myMsg/myMsg"
+    "pages/patient/myMsg/myMsg",
+    "pages/patient/record/record"
   ],
   "window": {
     "backgroundTextStyle": "light",

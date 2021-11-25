@@ -30,7 +30,7 @@ Page({
     patientPage:[
       {
         "name": "个人资料",
-        "targetUrl": "/pages/patient/personalInfo/personalInfo"
+        "targetUrl": "/pages/info/info"
       },
       {
         "name": "我的消息",
@@ -90,7 +90,7 @@ Page({
     const that = this;
     wx.setStorageSync('token', res.data.token);
     wx.setStorageSync('openId', res.data.openid)
-    if(true){
+    if(!role){
       wx.showModal({
         title: '提示',
         content: `您还未注册为${tipRole}，请点击注册按钮进行注册`,
@@ -136,7 +136,7 @@ Page({
     })
   },
   handleNav(e){
-    const targetUrl = e.currentTarget.dataset.target
+    const targetUrl = e.currentTarget.dataset.target;
     const that = this;
     wx.navigateTo(
       {
@@ -156,6 +156,23 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    const userInfo = wx.getStorageSync('userInfo');
+    if(userInfo){
+      wx.showLoading({
+        title: '登录中',
+      })
+      setTimeout(()=>{
+        wx.hideLoading({
+          success: (res) => {
+            this.setData({
+              userInfo: userInfo,
+              isLogin: true,
+              isDoctor: userInfo.doctor?false:true
+            })
+          },
+        })
+      },100)
+    }
   },
 
   /**

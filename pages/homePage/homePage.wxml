@@ -28,7 +28,6 @@
     <view class="moduleContainer" wx:else>
       <view wx:for="{{patientPage}}" wx:for-index="index" wx:key="index" class="moduleItem" bindtap="handleNav" data-target="{{item.targetUrl}}">
         <text>{{item.name}}</text>
-
       </view>
     </view>
     <view class="centerWrap">

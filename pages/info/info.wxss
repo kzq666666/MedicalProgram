@@ -23,7 +23,7 @@
 }
 
 .flexItemRight{
-    flex: 1 0 10%;
+    flex: 1 0 20%;
     height: 100rpx;
     line-height: 100rpx;
     text-align: left;
@@ -74,4 +74,8 @@
 
 .flexItemRightBt{
     position: relative;
+}
+
+.linkText{
+    color: cornflowerblue;
 }

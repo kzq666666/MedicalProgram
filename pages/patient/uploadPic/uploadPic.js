@@ -35,7 +35,6 @@ Page({
     if (len > 0 || that.data.firstUpLoad) {
       wx.chooseImage({
         count: len, // 默认9
-        
         sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
         sourceType: ['album'], // 可以指定来源是相册还是相机，默认二者都有
         success: function (res) {
@@ -113,12 +112,13 @@ Page({
             "Content-Type": "multipart/form-data"
           },
           //后台获取我们图片的key
-          name: 'pictures',
+          name: 'pictureFile',
           //额外的参数formData
           formData: {
             patientId: that.data.userInfo.id,
             date: that.data.date,
-            readTag: "false"
+            readTag: "false",
+            isUpdate: "false",
           },
           success: function (res) {
             console.log(res, 11111)

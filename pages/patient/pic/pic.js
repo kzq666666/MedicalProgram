@@ -9,7 +9,8 @@ Page({
   data: {
     patientId: "",
     isFirst: true,
-    isFresh: false
+    isFresh: false,
+    isJustShow: false
   },
 
   getPatientId(){
@@ -30,8 +31,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let id, isJustShow;
+    if(options.userInfo){
+      id = JSON.parse(options.userInfo).id;
+      isJustShow = true;
+      wx.setNavigationBarTitle({
+        title: `照片资料：${JSON.parse(options.userInfo).name}`,
+      })
+    }else{
+      id = wx.getStorageSync('userInfo').id;
+      isJustShow = false;
+    }
     this.setData({
-      patientId: wx.getStorageSync('userInfo').id
+      patientId: id,
+      isJustShow: isJustShow
     })
   },
 

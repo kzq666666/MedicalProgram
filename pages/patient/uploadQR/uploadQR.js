@@ -12,7 +12,8 @@ Page({
     firstUpLoad: true,
     questionList: [],
     isDisabled: false,
-    title: "上传问卷"
+    title: "上传问卷",
+    userInfo: {}
   },
   bindDateChange(e){
     this.setData({
@@ -29,7 +30,7 @@ Page({
   },
   commitUpload(){
     uploadQuesionRecord({
-      patient: wx.getStorageSync('userInfo'),
+      patient: this.data.userInfo,
       date: this.data.date,
       questions: this.data.questionList
     }).then(res=>{
@@ -42,6 +43,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    const pages = getCurrentPages();
+    const lastPage = pages[pages.length-2];
+
     if(JSON.stringify(options) !== '{}'){
       // const isShowRecord = JSON.parse(options.isShowRecord);
       const qr = JSON.parse(options.qr)
@@ -69,7 +73,8 @@ Page({
         this.setData({
           date: dateFill,
           curDate: dateFill,
-          questionList: res.data
+          questionList: res.data,
+          userInfo: lastPage.data.userInfo
         })
       })
       

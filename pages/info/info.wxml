@@ -5,12 +5,12 @@
         <image class="userinfo-avatar  " src="{{userInfo.imageUrl}}" mode="cover"></image>
     </view>
     <view class="flexItem">
-        <text class="flexItemLeft editable">姓名</text>
-        <input type="text" value="{{userInfo.name}}" class="inputClass flexItemRight" bindinput="bindinputVal"></input>
+        <text class="flexItemLeft {{isEditAble?'editable':''}}">姓名</text>
+        <input type="text" value="{{userInfo.name}}" class="inputClass flexItemRight" bindinput="bindinputVal" disabled="{{!isEditAble}}"></input>
     </view>
     <view class="flexItem">
-        <text class="flexItemLeft editable">性别</text>
-        <picker bindchange="bindPickerChange" class="flexItemRight" value="{{userInfo.gender}}" range="{{genderArray}}">
+        <text class="flexItemLeft {{isEditAble?'editable':''}}">性别</text>
+        <picker bindchange="bindPickerChange" class="flexItemRight" value="{{userInfo.gender}}" range="{{genderArray}}" disabled="{{!isEditAble}}">
             <view class="picker">
                 {{genderArray[userInfo.gender]}}
             </view>
@@ -18,47 +18,71 @@
     </view>
     <view class="flexItem">
         <text class="flexItemLeft">类型</text>
-        <input type="text" value="{{type}}" class="inputClass flexItemRight" bindinput="bindinputVal" disabled></input>
+        <input type="text" value="{{isDoctor?'主管医生':'患者'}}" class="inputClass flexItemRight" bindinput="bindinputVal" disabled></input>
     </view>
-    <block wx:if="{{type=='患者'}}">
+    <block wx:if="{{!isDoctor}}">
         <view class="flexItem">
             <text class="flexItemLeft">病历号</text>
             <input type="text" value="{{userInfo.patientNumber}}" class="inputClass flexItemRight" bindinput="bindinputVal" disabled></input>
         </view>
         <view class="flexItem">
+            <text class="flexItemLeft">创面类型</text>
+            <view class="flexItemRight">
+                <picker bindchange="changeDiagnosis" value="{{diagnosisIndex}}" range="{{diagnosisArray}}" disabled="{{!isEditAble}}">
+                    <view>
+                        {{diagnosisArray[diagnosisIndex]}}
+                    </view>
+                </picker>
+            </view>
+        </view>
+        <view class="flexItem">
             <text class="flexItemLeft">主治医生</text>
-            <text class="flexItemRight">{{userInfo.doctor.name}}</text>
-            <!-- <picker class="flexItemRight" bindchange="changeDoctor" value="{{index}}" range="{{doctorName}}">
+            <input type="text" value="{{userInfo.doctor.name}}" class="inputClass flexItemRight" bindinput="bindinputVal" disabled></input>
+            <!-- <picker class="flexItemRight"  bindchange="changeDoctor" value="{{index}}" range="{{doctorName}}">
                 <view class="picker">
                     {{doctorName[index]}}
                 </view>
             </picker> -->
         </view>
         <view class="flexItem">
-            <text class="flexItemLeft editable">危险等级</text>
-            <picker class="flexItemRight" bindchange="changeRisk" value="{{finalRiskLevelIndex}}" range="{{finalRiskLevel}}">
+            <text class="flexItemLeft {{isEditAble?'editable':''}}">危险等级</text>
+            <picker class="flexItemRight" bindchange="changeRisk" value="{{finalRiskLevelIndex}}" range="{{finalRiskLevel}}" disabled="{{!isEditAble}}">
                 <view class="picker">
                     {{finalRiskLevel[finalRiskLevelIndex]}}
                 </view>
             </picker>
         </view>
         <view class="flexItem">
-            <text class="flexItemLeft editable">随访状态</text>
-            <picker bindchange="changeStatus" value="{{statusIndex}}" range="{{statusArray}}">
-                <view class="flexItemRight">
-                    {{statusArray[statusIndex]}}
-                </view>
-            </picker>
+            <text class="flexItemLeft {{isEditAble?'editable':''}}">随访状态</text>
+            <view class="flexItemRight">
+                <picker bindchange="changeStatus" value="{{statusIndex}}" range="{{statusArray}}" disabled="{{!isEditAble}}">
+                    <view>
+                        {{statusArray[statusIndex]}}
+                    </view>
+                </picker>
+            </view>
+
         </view>
-        <view  class="flexItem">
-            <text class="flexItemLeft">问卷记录</text>
+        <view class="flexItem" bindtap="goToPic">
+            <text class="flexItemLeft">照片资料</text>
             <view class="flexItemRight flexItemRightBt">
-                <button>查看</button>
+                <text class="linkText">查看</text>
             </view>
         </view>
-        
+        <view class="flexItem " bindtap="goToQR">
+            <text class="flexItemLeft">问卷记录</text>
+            <view class="flexItemRight flexItemRightBt">
+                <text class="linkText">查看</text>
+            </view>
+        </view>
+        <view class="flexItem" bindtap="goToRecords">
+            <text class="flexItemLeft">检查资料</text>
+            <view class="flexItemRight flexItemRightBt">
+                <text class="linkText">查看</text>
+            </view>
+        </view>
     </block>
 
 </view>
 
-<button class="pageBottom" type="primary" bindtap="submitEditInfo">保存</button>
+<button class="pageBottom" type="primary" bindtap="submitEditInfo" wx:if="{{isEditAble}}">保存</button>

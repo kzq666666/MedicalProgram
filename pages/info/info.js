@@ -13,6 +13,9 @@ Page({
         genderArray: ['男', '女'],
         index: 0,
         finalRiskLevel: ["低风险", "中风险", "高风险"],
+        diagnosisArray: ["血管疾病", "糖尿病", "外伤", "压疮", "其他"],
+        diagnosisValue: ["VASCULAR_DISEASE", "DIABETES", "TRAUMA", "PRESSURE_SORE", "OTHER"],
+        diagnosisIndex: 0,
         finalRiskLevelIndex: 0,
         statusArray: ["随访结束","正在随访"],
         statusIndex: 0,
@@ -21,6 +24,30 @@ Page({
         doctorName: [],
         mainDoctor: {},
         isDoctor: false,
+        isEditAble: false,
+    },
+    goToRecords(e){
+        wx.navigateTo({
+          url: 'url',
+        })
+    },
+    goToQR(e){
+        const obj = JSON.stringify(this.data.userInfo);
+        wx.navigateTo({
+          url: `/pages/patient/QR/QR?userInfo=${obj}`
+        })
+    },
+    goToPic(){
+        const obj = JSON.stringify(this.data.userInfo);
+        wx.navigateTo({
+          url: `/pages/patient/pic/pic?userInfo=${obj}`
+        })
+    },
+    changeDiagnosis(e){
+        this.setData({
+            'userInfo.diagnosis': this.data.diagnosisValue[this.data.diagnosisIndex],
+            'diagnosisIndex': e.detail.value
+        })
     },
     changeRisk(e){
         this.setData({
@@ -52,7 +79,7 @@ Page({
         })
     },
     submitEditInfo(){
-        if(this.data.type == '主治医生'){
+        if(this.data.isDoctor){
             editDoctorInfo(this.data.userInfo).then((res)=>{
                 wx.showToast({
                     title: '修改成功',
@@ -109,17 +136,17 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        const userInfo = JSON.parse(options.userInfo)
-        console.log(userInfo)
-        if(options.isDoctor == 'true'){
-            this.setData({
-                type: '主治医生'
-            })
+        let userInfo;
+        let editAble = false;
+        let isDoctor = options.isDoctor?JSON.parse(options.isDoctor): false;
+        if(options.userInfo){
+            userInfo = JSON.parse(options.userInfo)
+            editAble = true;
         }else{
-            this.setData({
-                type: '患者'
-            })
+            userInfo = wx.getStorageSync('userInfo');
         }
+        
+        
         // if(this.data.type == '患者'){
         //     let doctorName = []
         //     getAllDoctors().then(res=>{
@@ -134,7 +161,9 @@ Page({
         // }
         this.setData(
             {
-                userInfo: userInfo
+                userInfo: userInfo,
+                isDoctor: isDoctor,
+                isEditAble: editAble
             }
         )
     },
