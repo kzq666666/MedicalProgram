@@ -1,13 +1,21 @@
 /* pages/doctor/paientManage/paientManage.wxss */
-
+.searchBoxWrap{
+  display: flex;
+  justify-content: center;
+  height: 60rpx;
+}
 .searchBox{
+  /* position: fixed; */
   display: flex;
   /* justify-content: center; */
   /* align-items: center; */
+
   background-color: white;
   border: 1px solid black;
   height: 75rpx;
   border-radius: 12rpx;
+  /* top: 20rpx; */
+
 }
 
 .searchText{
@@ -81,7 +89,6 @@
 .paientPage{
   width: 100%;
   padding: 40rpx;
-  height: 500rpx;
 }
 
 .paientWrap{

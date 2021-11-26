@@ -38,7 +38,7 @@
     padding: 0;
 }
 .pageBottom{
-    position: absolute;
+    position: fixed;
     bottom:60rpx;
     border-radius: 85rpx;
     left: 50%;
@@ -78,4 +78,14 @@
 
 .linkText{
     color: cornflowerblue;
+}
+
+.danger{
+    color: red;
+}
+/* .flexBox .flexItem:last-child{
+    margin-bottom: 100rpx;
+} */
+.flexBox{
+    margin-bottom: 200rpx;
 }

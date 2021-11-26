@@ -26,7 +26,7 @@
             <input type="text" value="{{userInfo.patientNumber}}" class="inputClass flexItemRight" bindinput="bindinputVal" disabled></input>
         </view>
         <view class="flexItem">
-            <text class="flexItemLeft">创面类型</text>
+            <text class="flexItemLeft {{isEditAble?'editable':''}}">创面类型</text>
             <view class="flexItemRight">
                 <picker bindchange="changeDiagnosis" value="{{diagnosisIndex}}" range="{{diagnosisArray}}" disabled="{{!isEditAble}}">
                     <view>
@@ -46,9 +46,9 @@
         </view>
         <view class="flexItem">
             <text class="flexItemLeft {{isEditAble?'editable':''}}">危险等级</text>
-            <picker class="flexItemRight" bindchange="changeRisk" value="{{finalRiskLevelIndex}}" range="{{finalRiskLevel}}" disabled="{{!isEditAble}}">
-                <view class="picker">
-                    {{finalRiskLevel[finalRiskLevelIndex]}}
+            <picker class="flexItemRight" bindchange="changeRisk" value="{{userInfo.finalRiskLevel}}" range="{{finalRiskLevel}}" disabled="{{!isEditAble}}">
+                <view class="picker {{userInfo.finalRiskLevel == 2? 'danger' : ''}}">
+                    {{finalRiskLevel[userInfo.finalRiskLevel]}}
                 </view>
             </picker>
         </view>
@@ -84,5 +84,4 @@
     </block>
 
 </view>
-
 <button class="pageBottom" type="primary" bindtap="submitEditInfo" wx:if="{{isEditAble}}">保存</button>

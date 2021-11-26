@@ -45,14 +45,13 @@ Page({
     },
     changeDiagnosis(e){
         this.setData({
-            'userInfo.diagnosis': this.data.diagnosisValue[this.data.diagnosisIndex],
+            'userInfo.diagnosis': this.data.diagnosisValue[e.detail.value],
             'diagnosisIndex': e.detail.value
         })
     },
     changeRisk(e){
         this.setData({
             'userInfo.finalRiskLevel': e.detail.value,
-            'finalRiskLevelIndex': e.detail.value
         })
     },
     changeStatus(e){
@@ -95,12 +94,15 @@ Page({
                             delta: 1,
                           })
                         },
-                        1000
+                        200
                       )
                     }
                   })
             })
         }else{
+            if(!this.data.userInfo.dischargeTime){
+                this.data.userInfo.dischargeTime = "1970-01-01"
+            }
             editPatientInfo(this.data.userInfo).then((res)=>{
                 if(res.statusCode == 403){
                     wx.showToast({
@@ -116,15 +118,15 @@ Page({
                         duration: 1000,
                         mask: true,
                         complete: ()=>{
-                          const eventChannel = that.getOpenerEventChannel()
-                          eventChannel.emit('editSuccess', res.data)
+                          const eventChannel = this.getOpenerEventChannel()
+                          eventChannel.emit('editSuccess', this.data.userInfo)
                           setTimeout(
                             ()=> {
                               wx.navigateBack({
                                 delta: 1,
                               })
                             },
-                            1000
+                            200
                           )
                         }
                       })
@@ -145,8 +147,11 @@ Page({
         }else{
             userInfo = wx.getStorageSync('userInfo');
         }
-        
-        
+        let diagnosisIndex = this.data.diagnosisValue.indexOf(userInfo.diagnosis);
+        if(diagnosisIndex==-1){
+            diagnosisIndex = 0;
+            userInfo.diagnosis = this.data.diagnosisValue[diagnosisIndex];
+        }
         // if(this.data.type == '患者'){
         //     let doctorName = []
         //     getAllDoctors().then(res=>{
@@ -163,7 +168,8 @@ Page({
             {
                 userInfo: userInfo,
                 isDoctor: isDoctor,
-                isEditAble: editAble
+                isEditAble: editAble,
+                diagnosisIndex: diagnosisIndex
             }
         )
     },

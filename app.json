@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/homePage/homePage",
     "pages/register/register",
 
-    "pages/homePage/homePage",
     "pages/doctor/paientManage/paientManage",
     "pages/patient/uploadPic/uploadPic",
     "pages/patient/pic/pic",

@@ -10,15 +10,15 @@
       <text class="marginBt">医生工号</text>
       <input type="text" model:value="{{jobNumber}}"></input>
     </view>
-    <view class="loginWrapItem marginBt">
+    <view class="loginWrapItem marginBt relative">
       <text class="marginBt">密码</text>
       <input type="{{pwdType}}" class="pwd" model:value="{{password}}">
-        <view bindtap="changePwdShow" class="isShowIcon">
+        
+      </input>
+      <!-- <view catchtap="changePwdShow" class="isShowIcon">
           <mp-icon icon="eyes-on" color="black" size="{{25}}" wx:if="{{!pwdShow}}"></mp-icon>
           <mp-icon icon="eyes-off" color="black" size="{{25}}" wx:else></mp-icon>
-        </view>
-      </input>
-     
+        </view> -->
     </view>
     <view class="btnList loginWrapItem">
       <button type="primary" class="marginBt" bindtap="doctorLogin">登录</button>

@@ -1,12 +1,20 @@
-<view class="wrapper">
+<view class="searchBoxWrap">
   <view class="searchBox">
     <select id="select" options="{{options}}" key="id" text="name" bind:change="changeValue"></select>
-    <input type="text" class="searchInput">
+    <input type="text" class="searchInput" bindinput="filterDataByValue" placeholder="名字或者病历号" value="{{inputValue}}">
       <mp-icon icon="search" color="black" size="{{25}}" class="searchIcon"></mp-icon>
     </input>
   </view>
+</view>
+<view class="wrapper">
   <view class="paientPage">
-    <view wx:for="{{allData}}" class="paientWrap" bindtap="goToInfoPage" data-info="{{item}}">
+    <view wx:for="{{showData}}" class="paientWrap" bindtap="goToInfoPage" data-info="{{item}}" data-index="{{index}}">
+      <image src="{{item.imageUrl}}" class="paientImage"></image>
+      <text class="paientName">{{item.name}}</text>
+    </view>
+  </view>
+  <view class="paientPage">
+    <view wx:for="{{showData}}" class="paientWrap" bindtap="goToInfoPage" data-info="{{item}}" data-index="{{index}}">
       <image src="{{item.imageUrl}}" class="paientImage"></image>
       <text class="paientName">{{item.name}}</text>
     </view>

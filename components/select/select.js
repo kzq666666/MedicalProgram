@@ -45,6 +45,7 @@ Component({
     },
     optionTap(e) {
       let dataset = e.target.dataset
+      console.log(dataset)
       let flag = false;
       let tempResult = this.data.result;
       if(dataset.children){
@@ -70,7 +71,6 @@ Component({
       }else{
         this.setData({
           current: dataset,
-        
         });
       }
       this.setData({
@@ -85,8 +85,10 @@ Component({
     openClose() {
       this.setData({
         isShow: !this.data.isShow,
-        result: this.deepClone(this.data.base),
-        flagList: new Array(this.data.base.length-1).fill(false)
+        // isShow: !this.data.isShow,
+        result: this.data.result,
+        // flagList: new Array(this.data.base.length-1).fill(false)
+        flagList: this.data.flagList.length ? this.data.flagList : new Array(this.data.result.length-1).fill(false)
       })
     },
 
@@ -123,6 +125,7 @@ Component({
           result.push({ id, name, value, children })
           flagList.push(false)
       }
+      console.log(result)
       this.setData({
         current: Object.assign({}, this.data.defaultOption),
         result: result,

@@ -90,7 +90,7 @@ Page({
     const that = this;
     wx.setStorageSync('token', res.data.token);
     wx.setStorageSync('openId', res.data.openid)
-    if(!role){
+    if(true){
       wx.showModal({
         title: '提示',
         content: `您还未注册为${tipRole}，请点击注册按钮进行注册`,
@@ -100,11 +100,11 @@ Page({
             wx.navigateTo({
               url: `/pages/register/register?type=${tipRole}`,
               events: {
-                registerSuccess(data){
-                  console.log(data)
+                registerSuccess(data, isDoctor){
                   that.setData({
                     isLogin: true,
-                    userInfo: data
+                    userInfo: data,
+                    isDoctor: isDoctor
                   })
                 }
               }

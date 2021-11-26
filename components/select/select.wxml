@@ -4,17 +4,16 @@
     <text class="current-name">{{current.name}}</text>
   </view>
   <view class="option-list" wx:if="{{isShow}}" catchtap="optionTap">
-    <text class="option"
-      data-id="{{defaultOption.id}}"
-      data-name="{{defaultOption.name}}">{{defaultOption.name}}
-    </text>
-    <text class="option {{item.children ? 'hasChildren' : 'noHasChildren'}} {{item.isChild? 'isChild' : 'notChild'}} {{item.children && flagList[index] ? 'isFoldFather' : 'notFoldFather' }}"
+    <!-- <text class="option">{{defaultOption.name}}
+    </text> -->
+    <text class="option {{item.children ? 'hasChildren' : 'noHasChildren'}} {{item.isChild? 'isChild' : 'notChild'}} {{item.children && flagList[index] ? 'isFoldFather' : 'notFoldFather' }} {{current.name == item.name ? 'isSelected' : ''}}"
       wx:for="{{result}}"
       wx:key="{{item.id}}"
       data-id="{{item.id}}"
       data-name="{{item.name}}"
       data-children="{{item.children}}"
       data-index="{{index}}"
+      data-value="{{item.value}}"
       >{{item.name}}
     </text>
     

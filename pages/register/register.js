@@ -138,6 +138,8 @@ Page({
     } else {
       if (this.checkPaient()) {
         params["patientNumber"] = this.data.userInfo.patientNumber
+        params["diagnosis"] = this.data.userInfo.diagnosis
+
         params["doctor"] = params["doctor"] = this.data.mainDoctor
         registerPatient(params).then(res => {
           if (/2\d\d/.test(res.statusCode)) {
@@ -148,7 +150,7 @@ Page({
               mask: true,
               complete: () => {
                 const eventChannel = this.getOpenerEventChannel()
-                eventChannel.emit('registerSuccess', res.data)
+                eventChannel.emit('registerSuccess', res.data, false)
                 wx.setStorageSync('userInfo', res.data)
                 setTimeout(
                   () => {
